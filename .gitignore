@@ -1,0 +1,17 @@
+.DS_Store
+__pycache__/
+*.pyc
+
+# Local-only session materials must never be published.
+/private/
+/_private/
+/teaching.html
+/content/mission01*.json
+/content/lessons/mission01-*.html
+/lessons/mission01-*.html
+/assets/mission-01/practice-*
+/assets/mission-01/verify_practice.py
+/scripts/check_mission01.py
+/scripts/check_workshop_examples.py
+*.tar.gz
+*.zip

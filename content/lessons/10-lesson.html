@@ -1,0 +1,22 @@
+<div class="chapter-top"><span class="chapter-no">14</span><span class="chapter-kicker">سیستم‌های دینامیکی خطی</span></div>
+<h2>مدل‌های سرعت ثابت، شتاب ثابت و ورودی معلوم</h2>
+<p class="lead">ساخت ماتریس‌های انتقال در یک و چند بعد و تفکیک شتاب مجهول از شتاب معلوم.</p>
+<h3>مدل سرعت ثابت یک‌بعدی</h3>
+<div class="mathbox">\[x_k=\begin{bmatrix}p_k\\v_k\end{bmatrix},\qquad F_{\mathrm{CV}}=\begin{bmatrix}1&\Delta t\\0&1\end{bmatrix}\]</div>
+<p>این مدل، سرعت را در انتقال قطعی ثابت فرض می‌کند. انحراف حرکت واقعی از این فرض می‌تواند با ورودی معلوم یا نویز فرایند مدل شود.</p>
+<h3>مدل شتاب ثابت یک‌بعدی</h3>
+<div class="mathbox">\[x_k=\begin{bmatrix}p_k\\v_k\\a_k\end{bmatrix},\quad A_c=\begin{bmatrix}0&1&0\\0&0&1\\0&0&0\end{bmatrix},\quad A_c^3=0\]</div>
+<div class="mathbox">\[F_{\mathrm{CA}}=e^{A_c\Delta t}=I+A_c\Delta t+\frac{A_c^2\Delta t^2}{2}=\begin{bmatrix}1&\Delta t&\Delta t^2/2\\0&1&\Delta t\\0&0&1\end{bmatrix}\]</div>
+<p>در این مدل، شتاب یکی از مؤلفه‌های مجهول وضعیت است و در بازهٔ انتقال ثابت فرض می‌شود. ضرایب ماتریس از انتگرال‌گیری روابط سرعت و شتاب به دست می‌آیند.</p>
+<h3>مثال عددی مدل شتاب ثابت</h3>
+<div class="mathbox">\[x_0=\begin{bmatrix}10\\3\\2\end{bmatrix},\qquad\Delta t=2\;\mathrm s,\qquad F=\begin{bmatrix}1&2&2\\0&1&2\\0&0&1\end{bmatrix}\]</div>
+<div class="mathbox">\[x_1=Fx_0=\begin{bmatrix}20\\7\\2\end{bmatrix}\]</div>
+<p>موقعیت از ۱۰ به ۲۰ متر و سرعت از ۳ به ۷ متر بر ثانیه افزایش می‌یابد؛ شتاب برابر ۲ متر بر مجذور ثانیه باقی می‌ماند.</p>
+<h3>مدل دوبعدی و ترتیب مؤلفه‌ها</h3>
+<div class="mathbox">\[x=[E,N,v_E,v_N]^T,\qquad F_{\mathrm{CV},2D}=\begin{bmatrix}I_2&\Delta t I_2\\0&I_2\end{bmatrix}\]</div>
+<div class="mathbox">\[x=[E,N,v_E,v_N,a_E,a_N]^T,\qquad F_{\mathrm{CA},2D}=\begin{bmatrix}I_2&\Delta t I_2&\tfrac12\Delta t^2I_2\\0&I_2&\Delta t I_2\\0&0&I_2\end{bmatrix}\]</div>
+<p>با تغییر ترتیب مؤلفه‌های وضعیت، سطرها و ستون‌های همهٔ ماتریس‌ها باید به‌صورت سازگار جابه‌جا شوند. برای مدل سرعت ثابت سه‌بعدی، همین ساختار با بلوک‌های همانی سه‌درسه نوشته می‌شود.</p>
+<h3>شتاب معلوم به‌عنوان ورودی</h3>
+<div class="mathbox">\[x_{k+1}=\begin{bmatrix}1&\Delta t\\0&1\end{bmatrix}x_k+\begin{bmatrix}\Delta t^2/2\\\Delta t\end{bmatrix}a_k\]</div>
+<div class="mathbox">\[B_{2D}=\begin{bmatrix}\tfrac12\Delta t^2I_2\\\Delta t I_2\end{bmatrix},\qquad u_k=\begin{bmatrix}a_E\\a_N\end{bmatrix}\]</div>
+<p>در این صورت‌بندی، شتاب ورودی معلوم است و در بردار وضعیت قرار ندارد. اگر شتاب از حسگر با خطا دریافت شود، عدم‌قطعیت آن باید در مدل تصادفی لحاظ شود. برای شتاب ۲ متر بر مجذور ثانیه و بازهٔ ۲ ثانیه، سهم ورودی در موقعیت و سرعت به‌ترتیب ۴ متر و ۴ متر بر ثانیه است.</p>

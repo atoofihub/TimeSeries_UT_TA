@@ -1,0 +1,24 @@
+<div class="chapter-top"><span class="chapter-no">18</span><span class="chapter-kicker">برآورد دینامیکی و فیلتر کالمن</span></div>
+<h2>مثال عددی فیلتر کالمن</h2>
+<p class="lead">محاسبهٔ یک گام پیش‌بینی و اصلاح برای وضعیت موقعیت و سرعت در یک بعد.</p>
+<h3>مدل و مقدار اولیه</h3>
+<div class="mathbox">\[\hat x_0^+=\begin{bmatrix}0\\1\end{bmatrix},\quad P_0^+=\begin{bmatrix}1&0\\0&1\end{bmatrix},\quad\Delta t=1,\quad Q=0\]</div>
+<div class="mathbox">\[F=\begin{bmatrix}1&1\\0&1\end{bmatrix},\quad H=\begin{bmatrix}1&0\end{bmatrix},\quad y_1=2,\quad R=1\]</div>
+<p>واحد موقعیت متر و واحد سرعت متر بر ثانیه است. برای ساده‌سازی این مثال، نویز فرایند صفر فرض شده است؛ این فرض به معنی پیشنهاد حذف نویز فرایند در کاربرد GNSS نیست.</p>
+<h3>پیش‌بینی وضعیت و کوواریانس</h3>
+<div class="mathbox">\[\hat x_1^-=F\hat x_0^+=\begin{bmatrix}1\\1\end{bmatrix}\]</div>
+<div class="mathbox">\[P_1^-=FP_0^+F^T+Q=\begin{bmatrix}2&1\\1&1\end{bmatrix}\]</div>
+<p>واریانس موقعیت در پیش‌بینی افزایش یافته است، زیرا عدم‌قطعیت سرعت در انتقال زمانی به موقعیت وارد می‌شود. همچنین کوواریانس متقابل موقعیت و سرعت غیرصفر شده است.</p>
+<h3>نوآوری و بهره</h3>
+<div class="mathbox">\[\nu_1=y_1-H\hat x_1^-=2-1=1,\qquad S_1=HP_1^-H^T+R=3\]</div>
+<div class="mathbox">\[K_1=P_1^-H^TS_1^{-1}=\begin{bmatrix}2/3\\1/3\end{bmatrix}\]</div>
+<p>مؤلفهٔ دوم بهره از کوواریانس متقابل موقعیت و سرعت حاصل می‌شود. در نتیجه، با وجود مشاهده‌شدن موقعیت، سرعت نیز اصلاح خواهد شد.</p>
+<h3>اصلاح وضعیت و کوواریانس</h3>
+<div class="mathbox">\[\hat x_1^+=\begin{bmatrix}1\\1\end{bmatrix}+\begin{bmatrix}2/3\\1/3\end{bmatrix}(1)=\boxed{\begin{bmatrix}5/3\\4/3\end{bmatrix}}\]</div>
+<div class="mathbox">\[P_1^+=(I-K_1H)P_1^-=\boxed{\begin{bmatrix}2/3&1/3\\1/3&2/3\end{bmatrix}}\]</div>
+<p>برآورد موقعیت حدود ۱٫۶۶۶۷ متر و سرعت حدود ۱٫۳۳۳۳ متر بر ثانیه است. واریانس موقعیت پس از استفاده از مشاهده از ۲ به دو سوم مترمربع کاهش یافته است. فرم جوزف نیز همین نتیجه را می‌دهد.</p>
+<h3>پیش‌بینی در بازهٔ بدون مشاهده</h3>
+<p>اگر تا ۳ ثانیهٔ بعد مشاهده‌ای دریافت نشود، فقط انتقال دینامیکی و انتشار کوواریانس انجام می‌شود:</p>
+<div class="mathbox">\[\hat x_{\mathrm{future}}^-=\begin{bmatrix}1&3\\0&1\end{bmatrix}\begin{bmatrix}5/3\\4/3\end{bmatrix}=\begin{bmatrix}17/3\\4/3\end{bmatrix}\]</div>
+<div class="mathbox">\[P_{\mathrm{future}}^-=\begin{bmatrix}1&3\\0&1\end{bmatrix}\begin{bmatrix}2/3&1/3\\1/3&2/3\end{bmatrix}\begin{bmatrix}1&0\\3&1\end{bmatrix}=\begin{bmatrix}26/3&7/3\\7/3&2/3\end{bmatrix}\]</div>
+<p>حتی با نویز فرایند صفر، واریانس موقعیت به علت عدم‌قطعیت سرعت افزایش می‌یابد. در مدل دارای نویز فرایند، کوواریانس متناظر با بازهٔ انتقال نیز افزوده می‌شود.</p>

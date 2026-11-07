@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="تفکیک پارامترهای مختص هر دسته و پارامترهای مشترک، با مدل کوواریانس مبتنی بر یک عامل مقیاس.">
+  <meta name="color-scheme" content="light">
+  <title>حالت سوم: مجهولات محلی و عمومی با عامل مقیاس مشترک | تحلیل سری زمانی · دانشگاه تهران</title>
+  <link rel="icon" href="../assets/ut_logo.png" type="image/png">
+  <link rel="stylesheet" href="../assets/lesson-content.css">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js" defer></script>
+<script src="../assets/math-config.js" defer></script>
+<script src="../assets/vendor/mathjax-tex-svg.js" defer></script>
+</head><body data-page="lesson" data-lesson-id="ch4"><a class="skip-link" href="#main">رفتن به محتوای اصلی</a>
+<div class="page-shell">
+<header class="university-header">
+  <img class="university-logo" src="../assets/ut_logo.png" width="84" height="100" alt="دانشگاه تهران">
+  <a class="course-identity" href="../index.html"><span>دانشگاه تهران · دانشکدهٔ فنی</span><strong>تحلیل سری زمانی</strong><span class="identity-en" lang="en" dir="ltr">TIME SERIES ANALYSIS</span></a>
+  <img class="faculty-logo" src="../assets/fanni_logo.png" width="114" height="100" alt="دانشکدهٔ فنی دانشگاه تهران">
+</header>
+<nav class="main-nav" aria-label="ناوبری اصلی">
+  <a href="../index.html" class="">سرفصل‌های درس</a>
+  <a href="../index.html#assignment-01">صورت تمرین و داده‌ها</a>
+  <a href="../lessons/15-lesson.html">پروژهٔ GNSS</a>
+  <a href="../lessons/20-reference.html">فرمول‌ها و واژه‌نامه</a>
+  <span class="nav-caption">درس‌نامه و تمرین‌های آموزشی</span>
+</nav><div class="lesson-toolbar"><nav aria-label="مسیر صفحه"><a href="../index.html">سرفصل‌های درس</a><span aria-hidden="true">/</span><a href="../index.html#six-models">شش حالت سرشکنی و برآورد</a><span aria-hidden="true">/</span><span>درس ۶</span></nav></div>
+<div class="lesson-layout"><aside class="lesson-sidebar">
+<details class="section-menu" open><summary>فهرست مطالب</summary><nav aria-label="فهرست همین درس"><a href="#section-1">ساختار پارامترهای محلی و عمومی</a><a href="#section-2">مدل تصادفی با عامل مقیاس مشترک</a><a href="#section-3">حل و کوواریانس مجهولات</a><a href="#section-4">داده‌ها و ماتریس طراحی مثال</a><a href="#section-5">حل عددی با هم‌فاکتور همانی</a></nav></details>
+<details class="all-lessons"><summary>فهرست درس‌ها</summary><nav aria-label="فهرست کامل درس‌ها"><a href="00-introduction.html" ><span>مقدمه</span>موضوع و ساختار درس</a><a href="01-lesson.html" ><span>درس ۱</span>بردارها، ماتریس‌ها و رتبه</a><a href="02-lesson.html" ><span>درس ۲</span>واریانس، کوواریانس و ماتریس هم‌فاکتور</a><a href="03-lesson.html" ><span>درس ۳</span>مدل خطی و کمترین مربعات تعمیم‌یافته</a><a href="case-1-grouped-observations.html" ><span>درس ۴</span>حالت اول: برآورد پارامترهای مشترک از چند دسته مشاهده</a><a href="case-2-independent-groups.html" ><span>درس ۵</span>حالت دوم: دسته‌های مشاهداتی مستقل</a><a href="04-lesson.html" aria-current=page><span>درس ۶</span>حالت سوم: مجهولات محلی و عمومی با عامل مقیاس مشترک</a><a href="case-4-heterogeneous-covariance.html" ><span>درس ۷</span>حالت چهارم: مدل محلی و عمومی با ضرایب کوواریانس متفاوت</a><a href="case-5-independent-local-global.html" ><span>درس ۸</span>حالت پنجم: مدل محلی و عمومی با دسته‌های مستقل</a><a href="05-lesson.html" ><span>درس ۹</span>حالت ششم: برآورد با اطلاعات پیشین مجهولات</a><a href="06-lesson.html" ><span>درس ۱۰</span>برآورد مؤلفه‌های واریانس</a><a href="07-lesson.html" ><span>درس ۱۱</span>کمترین مربعات دسته‌ای و بازگشتی</a><a href="08-lesson.html" ><span>درس ۱۲</span>سیستم‌های دینامیکی خطی همگن و غیرهمگن</a><a href="09-lesson.html" ><span>درس ۱۳</span>ماتریس انتقال وضعیت و حل سیستم غیرهمگن</a><a href="10-lesson.html" ><span>درس ۱۴</span>مدل‌های سرعت ثابت، شتاب ثابت و ورودی معلوم</a><a href="11-lesson.html" ><span>درس ۱۵</span>کوواریانس نویز فرایند و نویز مشاهده</a><a href="estimation-types.html" ><span>درس ۱۶</span>پیش‌بینی، فیلترینگ و هموارسازی</a><a href="12-lesson.html" ><span>درس ۱۷</span>استخراج روابط فیلتر کالمن</a><a href="13-lesson.html" ><span>درس ۱۸</span>مثال عددی فیلتر کالمن</a><a href="14-lesson.html" ><span>درس ۱۹</span>هموارسازی بازگشتی RTS</a><a href="15-lesson.html" ><span>درس ۲۰</span>داده‌های سری زمانی موقعیت و دستگاه محلی ENU</a><a href="16-lesson.html" ><span>درس ۲۱</span>پیاده‌سازی مدل خطی و فیلتر کالمن</a><a href="17-lesson.html" ><span>درس ۲۲</span>ارزیابی آماری و تشخیص ناسازگاری مدل</a><a href="18-lesson.html" ><span>درس ۲۳</span>ورودی سرعت و نرخ گردش در مدل حرکت</a><a href="19-lesson.html" ><span>درس ۲۴</span>پرسش‌های مرور مفاهیم</a><a href="20-reference.html" ><span>پیوست</span>جدول مدل‌ها، روابط و واژه‌نامه</a></nav></details>
+<a class="sidebar-back" href="../index.html">→ بازگشت به سرفصل‌های درس</a>
+</aside>
+<main id="main" class="lesson-main"><article class="lesson" id="ch4"><div class="chapter-top"><span class="chapter-no">06</span><span class="chapter-kicker">حالت ۳ سرشکنی</span></div>
+<h1>حالت سوم: مجهولات محلی و عمومی با عامل مقیاس مشترک</h1>
+<p class="lead">تفکیک پارامترهای مختص هر دسته و پارامترهای مشترک، با مدل کوواریانس مبتنی بر یک عامل مقیاس.</p>
+<h3 id="section-1">ساختار پارامترهای محلی و عمومی</h3>
+<p>بردار \(\beta_p\in\mathbb R^{u_p}\) شامل مجهولات مختص دستهٔ \(p\) و \(\beta_c\in\mathbb R^{u_c}\) شامل مجهولات مشترک بین دسته‌هاست. پارامتر محلی فقط در معادلات دستهٔ خود ظاهر می‌شود.</p>
+<div class="mathbox">\[y_p=A_{pp}\beta_p+A_{pc}\beta_c+\varepsilon_p\]</div>
+<div class="mathbox">\[\beta=\begin{bmatrix}\beta_1\\\vdots\\\beta_m\\\beta_c\end{bmatrix},\quad A=\begin{bmatrix}A_{11}&0&\cdots&A_{1c}\\0&A_{22}&\cdots&A_{2c}\\\vdots&\vdots&\ddots&\vdots\\0&\cdots&A_{mm}&A_{mc}\end{bmatrix}\]</div>
+<p>تفکیک محلی و عمومی، ویژگی مدل تابعی است و به‌تنهایی استقلال آماری دسته‌ها را نتیجه نمی‌دهد. همچنین یک پارامتر عمومی نباید ترکیب خطی پارامترهای محلی باشد؛ در غیر این صورت، طراحی دچار نقص رتبه می‌شود.</p>
+<h3 id="section-2">مدل تصادفی با عامل مقیاس مشترک</h3>
+<div class="mathbox">\[C_{pq}=\sigma_0^2Q_{pq},\qquad C_y=\sigma_0^2Q_y,\qquad P=Q_y^{-1}\]</div>
+<p>ماتریس هم‌فاکتور کل \(Q_y\) معلوم و معین مثبت است. عامل مشترک \(\sigma_0^2>0\) می‌تواند معلوم یا قابل برآورد باشد. بلوک‌های \(Q_{pq}\) برای دسته‌های مختلف ممکن است غیرصفر باشند.</p>
+<h3 id="section-3">حل و کوواریانس مجهولات</h3>
+<div class="mathbox">\[N=A^TPA,\qquad b=A^TPy,\qquad\boxed{\hat\beta=N^{-1}b}\]</div>
+<div class="mathbox">\[\boxed{C_{\hat\beta}=\sigma_0^2N^{-1}},\qquad \hat\sigma_0^2=\frac{r^TPr}{n-u}\quad(n>u)\]</div>
+<p>عامل مقیاس مشترک در برآورد پارامترها حذف می‌شود، اما در کوواریانس آن‌ها باقی می‌ماند. صفرهای ساختاری ماتریس طراحی لزوماً به صفرهای مشابه در ماتریس نرمال منجر نمی‌شوند؛ کوواریانس متقابل دسته‌ها می‌تواند بلوک‌های محلی را در معادلات نرمال به هم مرتبط کند.</p>
+<h3 id="section-4">داده‌ها و ماتریس طراحی مثال</h3>
+<p>دو ایستگاه در دو زمان صفر و یک سال مشاهده شده‌اند. مختصات اولیهٔ هر ایستگاه محلی و نرخ تغییر سالانه بین دو ایستگاه مشترک فرض می‌شود. واحد مختصات متر و واحد نرخ متر بر سال است.</p>
+<div class="mathbox">\[y_1=\begin{bmatrix}10\\12\end{bmatrix},\quad y_2=\begin{bmatrix}20\\23\end{bmatrix},\qquad\beta=\begin{bmatrix}a_1\\a_2\\c\end{bmatrix}\]</div>
+<div class="mathbox">\[y_p=\begin{bmatrix}1\\1\end{bmatrix}a_p+\begin{bmatrix}0\\1\end{bmatrix}c+\varepsilon_p,\qquad A=\begin{bmatrix}1&0&0\\1&0&1\\0&1&0\\0&1&1\end{bmatrix}\]</div>
+<p>در این مدل، پارامتر عمومی نرخ تغییر است. انتخاب یک بایاس ثابت عمومی در کنار دو عرض از مبدأ محلی، بدون قید اضافی، موجب وابستگی ستون‌ها می‌شد.</p>
+<h3 id="section-5">حل عددی با هم‌فاکتور همانی</h3>
+<p>برای محاسبهٔ نمونه، \(Q_y=I_4\) و مقدار پیشین عامل مقیاس \(\sigma_0^2=1\) فرض می‌شود. انتخاب همانی، یک نمونهٔ خاص از حالت سوم است؛ تعریف کلی این حالت به استقلال دسته‌ها محدود نیست.</p>
+<div class="mathbox">\[N=\begin{bmatrix}2&0&1\\0&2&1\\1&1&2\end{bmatrix},\qquad b=\begin{bmatrix}22\\43\\35\end{bmatrix}\]</div>
+<div class="mathbox">\[\boxed{\hat\beta=\begin{bmatrix}9.75\\20.25\\2.5\end{bmatrix}},\qquad C_{\hat\beta}=\begin{bmatrix}3/4&1/4&-1/2\\1/4&3/4&-1/2\\-1/2&-1/2&1\end{bmatrix}\]</div>
+<p>درایه‌های کوواریانس متناسب با واحد زوج پارامترها هستند: واریانس مختصات بر حسب مترمربع، واریانس نرخ بر حسب مترمربع بر سال‌مربع و کوواریانس مختصات و نرخ بر حسب مترمربع بر سال است.</p>
+<div class="mathbox">\[r=\begin{bmatrix}1/4\\-1/4\\-1/4\\1/4\end{bmatrix},\quad r^Tr=\frac14,\quad n-u=1\]</div>
+<p>اگر عامل مقیاس نامعلوم باشد، از این داده‌ها \(\hat\sigma_0^2=1/4\) به دست می‌آید و کوواریانس برآوردشده برابر یک‌چهارم ماتریس بالا خواهد بود. این برآورد با تنها یک درجهٔ آزادی انجام شده و اطلاعات محدودی دربارهٔ مقیاس نویز دارد.</p></article>
+<nav class="lesson-pagination" aria-label="درس قبلی و بعدی"><a class="previous-lesson" href="case-2-independent-groups.html"><span>درس قبلی</span><strong>→ حالت دوم: دسته‌های مشاهداتی مستقل</strong></a><a class="next-lesson" href="case-4-heterogeneous-covariance.html"><span>بخش بعدی</span><strong>حالت چهارم: مدل محلی و عمومی با ضرایب کوواریانس متفاوت ←</strong></a></nav>
+</main></div><footer class="site-footer">
+  <div><strong>تحلیل سری زمانی · دانشگاه تهران</strong><p>استاد: دکتر سعید فرزانه <span class="footer-separator">|</span> دستیار آموزشی: علیرضا عطوفی</p></div>
+  <a href="mailto:atoofi.alireza@ut.ac.ir" dir="ltr">atoofi.alireza@ut.ac.ir</a>
+</footer></div>
+</body></html>

@@ -1,0 +1,22 @@
+<div class="chapter-top"><span class="chapter-no">05</span><span class="chapter-kicker">حالت ۲ سرشکنی</span></div>
+<h2>حالت دوم: دسته‌های مشاهداتی مستقل</h2>
+<p class="lead">تجزیهٔ معادلات نرمال به سهم دسته‌های مستقل و ترکیب اطلاعات آن‌ها.</p>
+<h3>فرض استقلال و ساختار کوواریانس</h3>
+<p>مدل تابعی حالت اول حفظ می‌شود: \(y_p=A_p\beta+\varepsilon_p\). فرض جدید، استقلال آماری دسته‌هاست. نتیجهٔ مورد نیاز برای سرشکنی، صفرشدن کوواریانس متقابل است.</p>
+<div class="mathbox">\[\operatorname{Cov}(y_p,y_q)=0\quad(p\ne q),\qquad C_y=\operatorname{blockdiag}(C_1,\ldots,C_m)\]</div>
+<div class="mathbox">\[C_y^{-1}=\operatorname{blockdiag}(C_1^{-1},\ldots,C_m^{-1})\]</div>
+<p>هر بلوک درون‌دسته‌ای می‌تواند غیرقطری باشد؛ استقلال بین دسته‌ها، ناهمبستگی مشاهدات داخل یک دسته را الزام نمی‌کند.</p>
+<h3>تشکیل سهم اطلاعات هر دسته</h3>
+<div class="mathbox">\[J=\sum_{p=1}^m(y_p-A_p\beta)^TC_p^{-1}(y_p-A_p\beta)\]</div>
+<div class="mathbox">\[N_p=A_p^TC_p^{-1}A_p,\qquad b_p=A_p^TC_p^{-1}y_p\]</div>
+<div class="mathbox">\[N=\sum_{p=1}^mN_p,\qquad b=\sum_{p=1}^mb_p\]</div>
+<div class="mathbox">\[\boxed{\hat\beta=\left(\sum_pN_p\right)^{-1}\sum_pb_p},\qquad \boxed{C_{\hat\beta}=\left(\sum_pN_p\right)^{-1}}\]</div>
+<p>به‌جای تشکیل کوواریانس متراکم کل، می‌توان سهم هر دسته را جداگانه محاسبه و جمع کرد. یکتایی جواب به رتبهٔ طراحی تجمیع‌شده وابسته است؛ تکین‌بودن یک سهم اطلاعات، به‌تنهایی مانع حل کل نیست.</p>
+<h3>مثال عددی: حذف کوواریانس متقابل حالت اول</h3>
+<div class="mathbox">\[y_1=10,\quad y_2=12,\quad A_1=A_2=1,\quad C_1=1,\quad C_2=4\]</div>
+<div class="mathbox">\[N_1=1,\ b_1=10,\qquad N_2=\frac14,\ b_2=3\]</div>
+<div class="mathbox">\[N=\frac54,\quad b=13,\quad\boxed{\hat\beta=10.4\;\mathrm m},\quad\boxed{C_{\hat\beta}=0.8\;\mathrm{m^2}}\]</div>
+<p>در حالت اول، جواب ۱۰٫۲۵ متر و واریانس آن ۰٫۹۳۷۵ مترمربع بود. این تفاوت ناشی از صفر فرض‌کردن کوواریانس متقابل است. اگر مشاهدات واقعاً همبسته باشند، استفاده از مدل مستقل علاوه بر تغییر جواب، عدم‌قطعیت گزارش‌شده را نیز تغییر می‌دهد.</p>
+<h3>رابطه با پردازش بازگشتی</h3>
+<div class="mathbox">\[N^{(k)}=N^{(k-1)}+N_k,\qquad b^{(k)}=b^{(k-1)}+b_k\]</div>
+<p>این خاصیت جمع‌پذیری مبنای فرم اطلاعاتی کمترین مربعات بازگشتی است. در این مرحله، مجهولات همچنان ثابت‌اند و مدل تحول زمانی برای آن‌ها تعریف نشده است.</p>

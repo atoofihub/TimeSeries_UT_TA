@@ -1,0 +1,35 @@
+<div class="chapter-top"><span class="chapter-no">08</span><span class="chapter-kicker">حالت ۵ سرشکنی</span></div>
+<h2>حالت پنجم: مدل محلی و عمومی با دسته‌های مستقل</h2>
+<p class="lead">ساختار بلوکی‌قطری کوواریانس و حذف پارامترهای محلی برای برآورد پارامترهای عمومی.</p>
+<h3>ساختار پارامترهای محلی و عمومی</h3>
+<p>بردار \(\beta_p\in\mathbb R^{u_p}\) شامل مجهولات مختص دستهٔ \(p\) و \(\beta_c\in\mathbb R^{u_c}\) شامل مجهولات مشترک بین دسته‌هاست. پارامتر محلی فقط در معادلات دستهٔ خود ظاهر می‌شود.</p>
+<div class="mathbox">\[y_p=A_{pp}\beta_p+A_{pc}\beta_c+\varepsilon_p\]</div>
+<div class="mathbox">\[\beta=\begin{bmatrix}\beta_1\\\vdots\\\beta_m\\\beta_c\end{bmatrix},\quad A=\begin{bmatrix}A_{11}&0&\cdots&A_{1c}\\0&A_{22}&\cdots&A_{2c}\\\vdots&\vdots&\ddots&\vdots\\0&\cdots&A_{mm}&A_{mc}\end{bmatrix}\]</div>
+<p>تفکیک محلی و عمومی، ویژگی مدل تابعی است و به‌تنهایی استقلال آماری دسته‌ها را نتیجه نمی‌دهد. همچنین یک پارامتر عمومی نباید ترکیب خطی پارامترهای محلی باشد؛ در غیر این صورت، طراحی دچار نقص رتبه می‌شود.</p>
+<h3>مدل تصادفی و دلتای کرونکر</h3>
+<div class="mathbox">\[C_{pq}=\delta_{pq}\sigma_{pp}^{2}Q_{pp},\qquad\delta_{pq}=\begin{cases}1&p=q\\0&p\ne q\end{cases}\]</div>
+<div class="mathbox">\[C_p=\sigma_{pp}^{2}Q_{pp},\qquad C_y=\operatorname{blockdiag}(C_1,\ldots,C_m),\qquad W_p=C_p^{-1}\]</div>
+<p>این حالت با صفرکردن کوواریانس‌های متقابل در حالت چهارم حاصل می‌شود. هر دسته دقت و همبستگی درون‌دسته‌ای خود را دارد؛ پارامترهای عمومی همچنان در همهٔ دسته‌ها مشترک‌اند.</p>
+<h3>معادلات نرمال و سهم دسته‌ها</h3>
+<div class="mathbox">\[D_p=A_{pp}^TW_pA_{pp},\quad L_p=A_{pp}^TW_pA_{pc},\quad g_p=A_{pp}^TW_py_p\]</div>
+<div class="mathbox">\[N_{cc}=\sum_pA_{pc}^TW_pA_{pc},\qquad b_c=\sum_pA_{pc}^TW_py_p\]</div>
+<div class="mathbox">\[\begin{bmatrix}D_1&0&\cdots&L_1\\0&D_2&\cdots&L_2\\\vdots&\vdots&\ddots&\vdots\\L_1^T&L_2^T&\cdots&N_{cc}\end{bmatrix}\begin{bmatrix}\hat\beta_1\\\hat\beta_2\\\vdots\\\hat\beta_c\end{bmatrix}=\begin{bmatrix}g_1\\g_2\\\vdots\\b_c\end{bmatrix}\]</div>
+<p>بلوک‌های بین دو دستهٔ مجهول محلی صفر هستند، ولی اتصال آن‌ها به مجهول عمومی از طریق بلوک‌های غیرصفر باقی می‌ماند. بنابراین حل مستقل هر دسته با یک نسخهٔ جدا از پارامتر عمومی، با حل مشترک معادل نیست.</p>
+<h3>حذف مجهولات محلی و مکمل شور</h3>
+<p>اگر همهٔ \(D_p\)ها وارون‌پذیر باشند، از سطر محلی داریم \(\hat\beta_p=D_p^{-1}(g_p-L_p\hat\beta_c)\). جایگذاری در سطر عمومی به دستگاه کاهش‌یافته می‌انجامد:</p>
+<div class="mathbox">\[S=N_{cc}-\sum_pL_p^TD_p^{-1}L_p,\qquad d=b_c-\sum_pL_p^TD_p^{-1}g_p\]</div>
+<div class="mathbox">\[\boxed{\hat\beta_c=S^{-1}d},\qquad\boxed{\hat\beta_p=D_p^{-1}(g_p-L_p\hat\beta_c)}\]</div>
+<p>با تعریف \(D=\operatorname{blockdiag}(D_p)\) و \(L=[L_1^T,\ldots,L_m^T]^T\)، کوواریانس کامل برابر است با:</p>
+<div class="mathbox">\[C_{\hat\beta}=\begin{bmatrix}D^{-1}+D^{-1}LS^{-1}L^TD^{-1}&-D^{-1}LS^{-1}\\-S^{-1}L^TD^{-1}&S^{-1}\end{bmatrix}\]</div>
+<p>ناهمبستگی دسته‌های مشاهده به معنای ناهمبستگی برآورد پارامترهای محلی نیست. وجود پارامتر عمومی می‌تواند در کوواریانس برآوردها درایهٔ متقابل غیرصفر ایجاد کند.</p>
+<h3>داده‌ها و ماتریس طراحی مثال</h3>
+<p>دو ایستگاه در دو زمان صفر و یک سال مشاهده شده‌اند. مختصات اولیهٔ هر ایستگاه محلی و نرخ تغییر سالانه بین دو ایستگاه مشترک فرض می‌شود. واحد مختصات متر و واحد نرخ متر بر سال است.</p>
+<div class="mathbox">\[y_1=\begin{bmatrix}10\\12\end{bmatrix},\quad y_2=\begin{bmatrix}20\\23\end{bmatrix},\qquad\beta=\begin{bmatrix}a_1\\a_2\\c\end{bmatrix}\]</div>
+<div class="mathbox">\[y_p=\begin{bmatrix}1\\1\end{bmatrix}a_p+\begin{bmatrix}0\\1\end{bmatrix}c+\varepsilon_p,\qquad A=\begin{bmatrix}1&0&0\\1&0&1\\0&1&0\\0&1&1\end{bmatrix}\]</div>
+<p>در این مدل، پارامتر عمومی نرخ تغییر است. انتخاب یک بایاس ثابت عمومی در کنار دو عرض از مبدأ محلی، بدون قید اضافی، موجب وابستگی ستون‌ها می‌شد.</p>
+<h3>حل عددی با کوواریانس بلوکی‌قطری</h3>
+<div class="mathbox">\[C_1=I_2,\quad C_2=4I_2,\qquad N=\begin{bmatrix}2&0&1\\0&1/2&1/4\\1&1/4&5/4\end{bmatrix},\quad b=\begin{bmatrix}22\\43/4\\71/4\end{bmatrix}\]</div>
+<div class="mathbox">\[S=\frac54-\frac{1^2}{2}-\frac{(1/4)^2}{1/2}=\frac58,\quad d=\frac{71}{4}-11-\frac{43}{8}=\frac{11}{8}\]</div>
+<div class="mathbox">\[\hat c=\frac{11}{5}=2.2,\quad\hat a_1=\frac{22-2.2}{2}=9.9,\quad\hat a_2=\frac{43/4-(1/4)(2.2)}{1/2}=20.4\]</div>
+<div class="mathbox">\[\boxed{\hat\beta=\begin{bmatrix}9.9\\20.4\\2.2\end{bmatrix}},\qquad C_{\hat\beta}=\begin{bmatrix}9/10&2/5&-4/5\\2/5&12/5&-4/5\\-4/5&-4/5&8/5\end{bmatrix}\]</div>
+<p>واریانس نرخ عمومی برابر ۱٫۶ مترمربع بر سال‌مربع است. با حذف کوواریانس متقابل حالت چهارم، نرخ برآوردی از ۲٫۱۲۵ به ۲٫۲ تغییر می‌کند.</p>

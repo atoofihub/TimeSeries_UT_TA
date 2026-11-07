@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ساخت ماتریس‌های انتقال در یک و چند بعد و تفکیک شتاب مجهول از شتاب معلوم.">
+  <meta name="color-scheme" content="light">
+  <title>مدل‌های سرعت ثابت، شتاب ثابت و ورودی معلوم | تحلیل سری زمانی · دانشگاه تهران</title>
+  <link rel="icon" href="../assets/ut_logo.png" type="image/png">
+  <link rel="stylesheet" href="../assets/lesson-content.css">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js" defer></script>
+<script src="../assets/math-config.js" defer></script>
+<script src="../assets/vendor/mathjax-tex-svg.js" defer></script>
+</head><body data-page="lesson" data-lesson-id="ch10"><a class="skip-link" href="#main">رفتن به محتوای اصلی</a>
+<div class="page-shell">
+<header class="university-header">
+  <img class="university-logo" src="../assets/ut_logo.png" width="84" height="100" alt="دانشگاه تهران">
+  <a class="course-identity" href="../index.html"><span>دانشگاه تهران · دانشکدهٔ فنی</span><strong>تحلیل سری زمانی</strong><span class="identity-en" lang="en" dir="ltr">TIME SERIES ANALYSIS</span></a>
+  <img class="faculty-logo" src="../assets/fanni_logo.png" width="114" height="100" alt="دانشکدهٔ فنی دانشگاه تهران">
+</header>
+<nav class="main-nav" aria-label="ناوبری اصلی">
+  <a href="../index.html" class="">سرفصل‌های درس</a>
+  <a href="../index.html#assignment-01">صورت تمرین و داده‌ها</a>
+  <a href="../lessons/15-lesson.html">پروژهٔ GNSS</a>
+  <a href="../lessons/20-reference.html">فرمول‌ها و واژه‌نامه</a>
+  <span class="nav-caption">درس‌نامه و تمرین‌های آموزشی</span>
+</nav><div class="lesson-toolbar"><nav aria-label="مسیر صفحه"><a href="../index.html">سرفصل‌های درس</a><span aria-hidden="true">/</span><a href="../index.html#dynamics">سیستم‌های دینامیکی خطی</a><span aria-hidden="true">/</span><span>درس ۱۴</span></nav></div>
+<div class="lesson-layout"><aside class="lesson-sidebar">
+<details class="section-menu" open><summary>فهرست مطالب</summary><nav aria-label="فهرست همین درس"><a href="#section-1">مدل سرعت ثابت یک‌بعدی</a><a href="#section-2">مدل شتاب ثابت یک‌بعدی</a><a href="#section-3">مثال عددی مدل شتاب ثابت</a><a href="#section-4">مدل دوبعدی و ترتیب مؤلفه‌ها</a><a href="#section-5">شتاب معلوم به‌عنوان ورودی</a></nav></details>
+<details class="all-lessons"><summary>فهرست درس‌ها</summary><nav aria-label="فهرست کامل درس‌ها"><a href="00-introduction.html" ><span>مقدمه</span>موضوع و ساختار درس</a><a href="01-lesson.html" ><span>درس ۱</span>بردارها، ماتریس‌ها و رتبه</a><a href="02-lesson.html" ><span>درس ۲</span>واریانس، کوواریانس و ماتریس هم‌فاکتور</a><a href="03-lesson.html" ><span>درس ۳</span>مدل خطی و کمترین مربعات تعمیم‌یافته</a><a href="case-1-grouped-observations.html" ><span>درس ۴</span>حالت اول: برآورد پارامترهای مشترک از چند دسته مشاهده</a><a href="case-2-independent-groups.html" ><span>درس ۵</span>حالت دوم: دسته‌های مشاهداتی مستقل</a><a href="04-lesson.html" ><span>درس ۶</span>حالت سوم: مجهولات محلی و عمومی با عامل مقیاس مشترک</a><a href="case-4-heterogeneous-covariance.html" ><span>درس ۷</span>حالت چهارم: مدل محلی و عمومی با ضرایب کوواریانس متفاوت</a><a href="case-5-independent-local-global.html" ><span>درس ۸</span>حالت پنجم: مدل محلی و عمومی با دسته‌های مستقل</a><a href="05-lesson.html" ><span>درس ۹</span>حالت ششم: برآورد با اطلاعات پیشین مجهولات</a><a href="06-lesson.html" ><span>درس ۱۰</span>برآورد مؤلفه‌های واریانس</a><a href="07-lesson.html" ><span>درس ۱۱</span>کمترین مربعات دسته‌ای و بازگشتی</a><a href="08-lesson.html" ><span>درس ۱۲</span>سیستم‌های دینامیکی خطی همگن و غیرهمگن</a><a href="09-lesson.html" ><span>درس ۱۳</span>ماتریس انتقال وضعیت و حل سیستم غیرهمگن</a><a href="10-lesson.html" aria-current=page><span>درس ۱۴</span>مدل‌های سرعت ثابت، شتاب ثابت و ورودی معلوم</a><a href="11-lesson.html" ><span>درس ۱۵</span>کوواریانس نویز فرایند و نویز مشاهده</a><a href="estimation-types.html" ><span>درس ۱۶</span>پیش‌بینی، فیلترینگ و هموارسازی</a><a href="12-lesson.html" ><span>درس ۱۷</span>استخراج روابط فیلتر کالمن</a><a href="13-lesson.html" ><span>درس ۱۸</span>مثال عددی فیلتر کالمن</a><a href="14-lesson.html" ><span>درس ۱۹</span>هموارسازی بازگشتی RTS</a><a href="15-lesson.html" ><span>درس ۲۰</span>داده‌های سری زمانی موقعیت و دستگاه محلی ENU</a><a href="16-lesson.html" ><span>درس ۲۱</span>پیاده‌سازی مدل خطی و فیلتر کالمن</a><a href="17-lesson.html" ><span>درس ۲۲</span>ارزیابی آماری و تشخیص ناسازگاری مدل</a><a href="18-lesson.html" ><span>درس ۲۳</span>ورودی سرعت و نرخ گردش در مدل حرکت</a><a href="19-lesson.html" ><span>درس ۲۴</span>پرسش‌های مرور مفاهیم</a><a href="20-reference.html" ><span>پیوست</span>جدول مدل‌ها، روابط و واژه‌نامه</a></nav></details>
+<a class="sidebar-back" href="../index.html">→ بازگشت به سرفصل‌های درس</a>
+</aside>
+<main id="main" class="lesson-main"><article class="lesson" id="ch10"><div class="chapter-top"><span class="chapter-no">14</span><span class="chapter-kicker">سیستم‌های دینامیکی خطی</span></div>
+<h1>مدل‌های سرعت ثابت، شتاب ثابت و ورودی معلوم</h1>
+<p class="lead">ساخت ماتریس‌های انتقال در یک و چند بعد و تفکیک شتاب مجهول از شتاب معلوم.</p>
+<h3 id="section-1">مدل سرعت ثابت یک‌بعدی</h3>
+<div class="mathbox">\[x_k=\begin{bmatrix}p_k\\v_k\end{bmatrix},\qquad F_{\mathrm{CV}}=\begin{bmatrix}1&\Delta t\\0&1\end{bmatrix}\]</div>
+<p>این مدل، سرعت را در انتقال قطعی ثابت فرض می‌کند. انحراف حرکت واقعی از این فرض می‌تواند با ورودی معلوم یا نویز فرایند مدل شود.</p>
+<h3 id="section-2">مدل شتاب ثابت یک‌بعدی</h3>
+<div class="mathbox">\[x_k=\begin{bmatrix}p_k\\v_k\\a_k\end{bmatrix},\quad A_c=\begin{bmatrix}0&1&0\\0&0&1\\0&0&0\end{bmatrix},\quad A_c^3=0\]</div>
+<div class="mathbox">\[F_{\mathrm{CA}}=e^{A_c\Delta t}=I+A_c\Delta t+\frac{A_c^2\Delta t^2}{2}=\begin{bmatrix}1&\Delta t&\Delta t^2/2\\0&1&\Delta t\\0&0&1\end{bmatrix}\]</div>
+<p>در این مدل، شتاب یکی از مؤلفه‌های مجهول وضعیت است و در بازهٔ انتقال ثابت فرض می‌شود. ضرایب ماتریس از انتگرال‌گیری روابط سرعت و شتاب به دست می‌آیند.</p>
+<h3 id="section-3">مثال عددی مدل شتاب ثابت</h3>
+<div class="mathbox">\[x_0=\begin{bmatrix}10\\3\\2\end{bmatrix},\qquad\Delta t=2\;\mathrm s,\qquad F=\begin{bmatrix}1&2&2\\0&1&2\\0&0&1\end{bmatrix}\]</div>
+<div class="mathbox">\[x_1=Fx_0=\begin{bmatrix}20\\7\\2\end{bmatrix}\]</div>
+<p>موقعیت از ۱۰ به ۲۰ متر و سرعت از ۳ به ۷ متر بر ثانیه افزایش می‌یابد؛ شتاب برابر ۲ متر بر مجذور ثانیه باقی می‌ماند.</p>
+<h3 id="section-4">مدل دوبعدی و ترتیب مؤلفه‌ها</h3>
+<div class="mathbox">\[x=[E,N,v_E,v_N]^T,\qquad F_{\mathrm{CV},2D}=\begin{bmatrix}I_2&\Delta t I_2\\0&I_2\end{bmatrix}\]</div>
+<div class="mathbox">\[x=[E,N,v_E,v_N,a_E,a_N]^T,\qquad F_{\mathrm{CA},2D}=\begin{bmatrix}I_2&\Delta t I_2&\tfrac12\Delta t^2I_2\\0&I_2&\Delta t I_2\\0&0&I_2\end{bmatrix}\]</div>
+<p>با تغییر ترتیب مؤلفه‌های وضعیت، سطرها و ستون‌های همهٔ ماتریس‌ها باید به‌صورت سازگار جابه‌جا شوند. برای مدل سرعت ثابت سه‌بعدی، همین ساختار با بلوک‌های همانی سه‌درسه نوشته می‌شود.</p>
+<h3 id="section-5">شتاب معلوم به‌عنوان ورودی</h3>
+<div class="mathbox">\[x_{k+1}=\begin{bmatrix}1&\Delta t\\0&1\end{bmatrix}x_k+\begin{bmatrix}\Delta t^2/2\\\Delta t\end{bmatrix}a_k\]</div>
+<div class="mathbox">\[B_{2D}=\begin{bmatrix}\tfrac12\Delta t^2I_2\\\Delta t I_2\end{bmatrix},\qquad u_k=\begin{bmatrix}a_E\\a_N\end{bmatrix}\]</div>
+<p>در این صورت‌بندی، شتاب ورودی معلوم است و در بردار وضعیت قرار ندارد. اگر شتاب از حسگر با خطا دریافت شود، عدم‌قطعیت آن باید در مدل تصادفی لحاظ شود. برای شتاب ۲ متر بر مجذور ثانیه و بازهٔ ۲ ثانیه، سهم ورودی در موقعیت و سرعت به‌ترتیب ۴ متر و ۴ متر بر ثانیه است.</p></article>
+<nav class="lesson-pagination" aria-label="درس قبلی و بعدی"><a class="previous-lesson" href="09-lesson.html"><span>درس قبلی</span><strong>→ ماتریس انتقال وضعیت و حل سیستم غیرهمگن</strong></a><a class="next-lesson" href="11-lesson.html"><span>بخش بعدی</span><strong>کوواریانس نویز فرایند و نویز مشاهده ←</strong></a></nav>
+</main></div><footer class="site-footer">
+  <div><strong>تحلیل سری زمانی · دانشگاه تهران</strong><p>استاد: دکتر سعید فرزانه <span class="footer-separator">|</span> دستیار آموزشی: علیرضا عطوفی</p></div>
+  <a href="mailto:atoofi.alireza@ut.ac.ir" dir="ltr">atoofi.alireza@ut.ac.ir</a>
+</footer></div>
+</body></html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="استخراج معادلات نرمال، کوواریانس برآورد و قرارداد باقی‌مانده برای مدل خطی.">
+  <meta name="color-scheme" content="light">
+  <title>مدل خطی و کمترین مربعات تعمیم‌یافته | تحلیل سری زمانی · دانشگاه تهران</title>
+  <link rel="icon" href="../assets/ut_logo.png" type="image/png">
+  <link rel="stylesheet" href="../assets/lesson-content.css">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js" defer></script>
+<script src="../assets/math-config.js" defer></script>
+<script src="../assets/vendor/mathjax-tex-svg.js" defer></script>
+</head><body data-page="lesson" data-lesson-id="ch3"><a class="skip-link" href="#main">رفتن به محتوای اصلی</a>
+<div class="page-shell">
+<header class="university-header">
+  <img class="university-logo" src="../assets/ut_logo.png" width="84" height="100" alt="دانشگاه تهران">
+  <a class="course-identity" href="../index.html"><span>دانشگاه تهران · دانشکدهٔ فنی</span><strong>تحلیل سری زمانی</strong><span class="identity-en" lang="en" dir="ltr">TIME SERIES ANALYSIS</span></a>
+  <img class="faculty-logo" src="../assets/fanni_logo.png" width="114" height="100" alt="دانشکدهٔ فنی دانشگاه تهران">
+</header>
+<nav class="main-nav" aria-label="ناوبری اصلی">
+  <a href="../index.html" class="">سرفصل‌های درس</a>
+  <a href="../index.html#assignment-01">صورت تمرین و داده‌ها</a>
+  <a href="../lessons/15-lesson.html">پروژهٔ GNSS</a>
+  <a href="../lessons/20-reference.html">فرمول‌ها و واژه‌نامه</a>
+  <span class="nav-caption">درس‌نامه و تمرین‌های آموزشی</span>
+</nav><div class="lesson-toolbar"><nav aria-label="مسیر صفحه"><a href="../index.html">سرفصل‌های درس</a><span aria-hidden="true">/</span><a href="../index.html#foundations">مبانی ریاضی و مدل خطی</a><span aria-hidden="true">/</span><span>درس ۳</span></nav></div>
+<div class="lesson-layout"><aside class="lesson-sidebar">
+<details class="section-menu" open><summary>فهرست مطالب</summary><nav aria-label="فهرست همین درس"><a href="#section-1">مدل تابعی و مدل تصادفی</a><a href="#section-2">تابع هدف و معادلات نرمال</a><a href="#section-3">خواص آماری برآورد</a><a href="#section-4">باقی‌مانده و تصحیح مشاهدات</a><a href="#section-5">مثال عددی: برآورد یک مختصات ثابت</a></nav></details>
+<details class="all-lessons"><summary>فهرست درس‌ها</summary><nav aria-label="فهرست کامل درس‌ها"><a href="00-introduction.html" ><span>مقدمه</span>موضوع و ساختار درس</a><a href="01-lesson.html" ><span>درس ۱</span>بردارها، ماتریس‌ها و رتبه</a><a href="02-lesson.html" ><span>درس ۲</span>واریانس، کوواریانس و ماتریس هم‌فاکتور</a><a href="03-lesson.html" aria-current=page><span>درس ۳</span>مدل خطی و کمترین مربعات تعمیم‌یافته</a><a href="case-1-grouped-observations.html" ><span>درس ۴</span>حالت اول: برآورد پارامترهای مشترک از چند دسته مشاهده</a><a href="case-2-independent-groups.html" ><span>درس ۵</span>حالت دوم: دسته‌های مشاهداتی مستقل</a><a href="04-lesson.html" ><span>درس ۶</span>حالت سوم: مجهولات محلی و عمومی با عامل مقیاس مشترک</a><a href="case-4-heterogeneous-covariance.html" ><span>درس ۷</span>حالت چهارم: مدل محلی و عمومی با ضرایب کوواریانس متفاوت</a><a href="case-5-independent-local-global.html" ><span>درس ۸</span>حالت پنجم: مدل محلی و عمومی با دسته‌های مستقل</a><a href="05-lesson.html" ><span>درس ۹</span>حالت ششم: برآورد با اطلاعات پیشین مجهولات</a><a href="06-lesson.html" ><span>درس ۱۰</span>برآورد مؤلفه‌های واریانس</a><a href="07-lesson.html" ><span>درس ۱۱</span>کمترین مربعات دسته‌ای و بازگشتی</a><a href="08-lesson.html" ><span>درس ۱۲</span>سیستم‌های دینامیکی خطی همگن و غیرهمگن</a><a href="09-lesson.html" ><span>درس ۱۳</span>ماتریس انتقال وضعیت و حل سیستم غیرهمگن</a><a href="10-lesson.html" ><span>درس ۱۴</span>مدل‌های سرعت ثابت، شتاب ثابت و ورودی معلوم</a><a href="11-lesson.html" ><span>درس ۱۵</span>کوواریانس نویز فرایند و نویز مشاهده</a><a href="estimation-types.html" ><span>درس ۱۶</span>پیش‌بینی، فیلترینگ و هموارسازی</a><a href="12-lesson.html" ><span>درس ۱۷</span>استخراج روابط فیلتر کالمن</a><a href="13-lesson.html" ><span>درس ۱۸</span>مثال عددی فیلتر کالمن</a><a href="14-lesson.html" ><span>درس ۱۹</span>هموارسازی بازگشتی RTS</a><a href="15-lesson.html" ><span>درس ۲۰</span>داده‌های سری زمانی موقعیت و دستگاه محلی ENU</a><a href="16-lesson.html" ><span>درس ۲۱</span>پیاده‌سازی مدل خطی و فیلتر کالمن</a><a href="17-lesson.html" ><span>درس ۲۲</span>ارزیابی آماری و تشخیص ناسازگاری مدل</a><a href="18-lesson.html" ><span>درس ۲۳</span>ورودی سرعت و نرخ گردش در مدل حرکت</a><a href="19-lesson.html" ><span>درس ۲۴</span>پرسش‌های مرور مفاهیم</a><a href="20-reference.html" ><span>پیوست</span>جدول مدل‌ها، روابط و واژه‌نامه</a></nav></details>
+<a class="sidebar-back" href="../index.html">→ بازگشت به سرفصل‌های درس</a>
+</aside>
+<main id="main" class="lesson-main"><article class="lesson" id="ch3"><div class="chapter-top"><span class="chapter-no">03</span><span class="chapter-kicker">مبانی ریاضی و مدل خطی</span></div>
+<h1>مدل خطی و کمترین مربعات تعمیم‌یافته</h1>
+<p class="lead">استخراج معادلات نرمال، کوواریانس برآورد و قرارداد باقی‌مانده برای مدل خطی.</p>
+<h3 id="section-1">مدل تابعی و مدل تصادفی</h3>
+<div class="mathbox">\[y=A\beta+\varepsilon,\qquad E(y)=A\beta,\qquad\operatorname{Cov}(y)=C_y\]</div>
+<p>مدل تابعی، ارتباط مشاهدات و پارامترها را تعیین می‌کند. مدل تصادفی شامل واریانس مشاهدات و کوواریانس متقابل آن‌هاست. در این بخش، \(y\in\mathbb R^n\)، \(\beta\in\mathbb R^u\)، ماتریس طراحی \(A\) معلوم و دارای رتبهٔ ستونی کامل و \(C_y\) معلوم و معین مثبت فرض می‌شود.</p>
+<h3 id="section-2">تابع هدف و معادلات نرمال</h3>
+<div class="mathbox">\[J(\beta)=(y-A\beta)^TC_y^{-1}(y-A\beta)\]</div>
+<div class="mathbox">\[\frac{\partial J}{\partial\beta}=-2A^TC_y^{-1}y+2A^TC_y^{-1}A\beta=0\]</div>
+<div class="mathbox">\[N=A^TC_y^{-1}A,\qquad b=A^TC_y^{-1}y,\qquad N\hat\beta=b\]</div>
+<p>ماتریس نرمال \(N\) با فرض‌های فوق معین مثبت است؛ زیرا برای هر \(z\ne0\)، مقدار \((Az)^TC_y^{-1}(Az)\) مثبت خواهد بود. در نتیجه، برآورد یکتا است.</p>
+<div class="mathbox">\[\boxed{\hat\beta=(A^TC_y^{-1}A)^{-1}A^TC_y^{-1}y}\]</div>
+<h3 id="section-3">خواص آماری برآورد</h3>
+<p>در مدل خطی با خطای میانگین‌صفر و کوواریانس معلوم، این برآورد در میان برآوردگرهای خطی نااریب دارای کمترین کوواریانس است. این نتیجه به گاوسی‌بودن خطاها نیاز ندارد. با فرض گاوسی، برآورد GLS با برآورد بیشینهٔ درست‌نمایی پارامترهای ثابت نیز منطبق است.</p>
+<div class="mathbox">\[\hat\beta-\beta=N^{-1}A^TC_y^{-1}\varepsilon\]</div>
+<div class="mathbox">\[C_{\hat\beta}=N^{-1}A^TC_y^{-1}C_yC_y^{-1}AN^{-1}=\boxed{N^{-1}}\]</div>
+<p>اگر وزن \(P=Q_y^{-1}\) تعریف شده باشد، نتیجه به صورت \(C_{\hat\beta}=\sigma_0^2(A^TPA)^{-1}\) نوشته می‌شود. برای عامل مقیاس نامعلوم و افزونگی \(n-u>0\)، برآورد معمول آن \(\hat\sigma_0^2=r^TPr/(n-u)\) است.</p>
+<h3 id="section-4">باقی‌مانده و تصحیح مشاهدات</h3>
+<div class="mathbox">\[r=y-A\hat\beta,\quad v=-r,\quad \hat y=y+v=A\hat\beta,\quad A^TC_y^{-1}r=0\]</div>
+<p>رابطهٔ آخر، تعامد وزن‌دار باقی‌مانده با فضای ستون‌های ماتریس طراحی است. کوچک‌بودن باقی‌مانده به‌تنهایی صحت مدل یا دقت مطلق پارامترها را تضمین نمی‌کند؛ افزونگی، ساختار وزن و کیفیت مدل تابعی نیز باید بررسی شوند.</p>
+<h3 id="section-5">مثال عددی: برآورد یک مختصات ثابت</h3>
+<div class="mathbox">\[y=\begin{bmatrix}10\\12\\11\end{bmatrix},\quad A=\begin{bmatrix}1\\1\\1\end{bmatrix},\quad C_y=\operatorname{diag}(1,4,1)\]</div>
+<div class="mathbox">\[N=1+\tfrac14+1=\tfrac94,\qquad b=10+\tfrac{12}{4}+11=24\]</div>
+<div class="mathbox">\[\hat\beta=\frac{24}{9/4}=\frac{32}{3}\simeq10.6667\;\mathrm m,\qquad C_{\hat\beta}=\frac49\;\mathrm{m^2}\]</div>
+<p>مشاهدهٔ دوم به علت واریانس چهاربرابر، یک‌چهارم وزن هر یک از دو مشاهدهٔ دیگر را دارد. در شش حالت بعد، همین اصل با تغییر ساختار دسته‌های مشاهده، مجهولات و اطلاعات پیشین به کار می‌رود.</p></article>
+<nav class="lesson-pagination" aria-label="درس قبلی و بعدی"><a class="previous-lesson" href="02-lesson.html"><span>درس قبلی</span><strong>→ واریانس، کوواریانس و ماتریس هم‌فاکتور</strong></a><a class="next-lesson" href="case-1-grouped-observations.html"><span>بخش بعدی</span><strong>حالت اول: برآورد پارامترهای مشترک از چند دسته مشاهده ←</strong></a></nav>
+</main></div><footer class="site-footer">
+  <div><strong>تحلیل سری زمانی · دانشگاه تهران</strong><p>استاد: دکتر سعید فرزانه <span class="footer-separator">|</span> دستیار آموزشی: علیرضا عطوفی</p></div>
+  <a href="mailto:atoofi.alireza@ut.ac.ir" dir="ltr">atoofi.alireza@ut.ac.ir</a>
+</footer></div>
+</body></html>

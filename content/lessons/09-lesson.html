@@ -1,0 +1,28 @@
+<div class="chapter-top"><span class="chapter-no">13</span><span class="chapter-kicker">سیستم‌های دینامیکی خطی</span></div>
+<h2>ماتریس انتقال وضعیت و حل سیستم غیرهمگن</h2>
+<p class="lead">استخراج ماتریس انتقال از معادلهٔ دینامیکی و محاسبهٔ اثر ورودی در مدل گسسته.</p>
+<h3>تعریف ماتریس انتقال</h3>
+<div class="mathbox">\[\dot x(t)=A_c(t)x(t),\qquad x(t)=\Phi(t,t_0)x(t_0)\]</div>
+<div class="mathbox">\[\frac{\partial\Phi(t,t_0)}{\partial t}=A_c(t)\Phi(t,t_0),\qquad\Phi(t_0,t_0)=I\]</div>
+<p>با فرض پیوستگی ضرایب، معادلهٔ ماتریسی و شرط اولیه، ماتریس انتقال را به‌طور یکتا تعیین می‌کنند. دو آرگومان آن، زمان مقصد و زمان مبدأ هستند.</p>
+<h3>خواص ترکیب و وارون‌پذیری</h3>
+<div class="mathbox">\[\Phi(t_2,t_0)=\Phi(t_2,t_1)\Phi(t_1,t_0),\qquad\Phi(t,t_0)^{-1}=\Phi(t_0,t)\]</div>
+<p>خاصیت ترکیب، سازگاری انتقال مستقیم و مرحله‌ای را بیان می‌کند. وارون‌پذیری صرف برای اثبات درستی یک ماتریس انتقال کافی نیست؛ ماتریس پیشنهادی باید معادلهٔ دینامیکی و شرط اولیه را نیز ارضا کند.</p>
+<h3>سیستم با ضرایب ثابت</h3>
+<div class="mathbox">\[\Phi(t,t_0)=e^{A_c(t-t_0)},\qquad e^{A_c\Delta t}=I+A_c\Delta t+\frac{A_c^2\Delta t^2}{2!}+\cdots\]</div>
+<p>برای ضرایب ثابت، نمای ماتریسی راه‌حل دستگاه همگن است. برای ضرایب زمان‌متغیر، جایگزینی سادهٔ نمای انتگرال ماتریس در حالت عمومی صحیح نیست، مگر شرایط جابه‌جایی مناسب برقرار باشد.</p>
+<h3>مدل سرعت ثابت و کنترل روابط</h3>
+<div class="mathbox">\[A_c=\begin{bmatrix}0&1\\0&0\end{bmatrix},\qquad A_c^2=0,\qquad\Phi(\Delta t)=I+A_c\Delta t=\begin{bmatrix}1&\Delta t\\0&1\end{bmatrix}\]</div>
+<div class="mathbox">\[\Phi(0)=I,\quad\Phi(\Delta t_2)\Phi(\Delta t_1)=\Phi(\Delta t_1+\Delta t_2)\]</div>
+<div class="mathbox">\[\frac{d\Phi}{d\Delta t}=\begin{bmatrix}0&1\\0&0\end{bmatrix}=A_c\Phi\]</div>
+<p>این روابط، مدل موقعیت و سرعت را با فرض مشتق سرعت صفر مشخص می‌کنند. در فاصلهٔ ۲ ثانیه و برای وضعیت اولیهٔ ۱۰ متر و ۳ متر بر ثانیه، وضعیت جدید برابر ۱۶ متر و ۳ متر بر ثانیه خواهد بود.</p>
+<h3>حل سیستم غیرهمگن</h3>
+<div class="mathbox">\[\dot x=A_c(t)x+G_c(t)u(t)\]</div>
+<p>با تغییر متغیر \(x(t)=\Phi(t,t_0)z(t)\)، مشتق‌گیری و جایگذاری در معادلهٔ اصلی داریم:</p>
+<div class="mathbox">\[\dot\Phi z+\Phi\dot z=A_c\Phi z+G_cu\quad\Longrightarrow\quad\dot z=\Phi(t,t_0)^{-1}G_c(t)u(t)\]</div>
+<div class="mathbox">\[\boxed{x(t)=\Phi(t,t_0)x(t_0)+\int_{t_0}^{t}\Phi(t,\tau)G_c(\tau)u(\tau)\,d\tau}\]</div>
+<p>برای رسیدن به این رابطه، پس از انتگرال‌گیری از خاصیت ترکیب ماتریس انتقال استفاده می‌شود. جملهٔ انتگرالی، سهم ورودی در تغییر وضعیت است.</p>
+<h3>گسسته‌سازی با ورودی ثابت در هر بازه</h3>
+<div class="mathbox">\[F_k=e^{A_c\Delta t_k},\qquad B_k=\int_0^{\Delta t_k}e^{A_c(\Delta t_k-s)}G_c\,ds\]</div>
+<div class="mathbox">\[\boxed{x_{k+1}=F_kx_k+B_ku_k}\]</div>
+<p>این فرمول برای ماتریس‌های دینامیکی و ورود تحریک ثابت و ورودی ثابت روی بازه نوشته شده است. در صورت تغییر این فرض‌ها، انتگرال باید متناسب با مدل واقعی محاسبه شود.</p>

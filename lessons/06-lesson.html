@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="برآورد شدت مؤلفه‌های مدل تصادفی پس از تعیین ساختار تابعی و کوواریانس مشاهدات.">
+  <meta name="color-scheme" content="light">
+  <title>برآورد مؤلفه‌های واریانس | تحلیل سری زمانی · دانشگاه تهران</title>
+  <link rel="icon" href="../assets/ut_logo.png" type="image/png">
+  <link rel="stylesheet" href="../assets/lesson-content.css">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js" defer></script>
+<script src="../assets/math-config.js" defer></script>
+<script src="../assets/vendor/mathjax-tex-svg.js" defer></script>
+</head><body data-page="lesson" data-lesson-id="ch6"><a class="skip-link" href="#main">رفتن به محتوای اصلی</a>
+<div class="page-shell">
+<header class="university-header">
+  <img class="university-logo" src="../assets/ut_logo.png" width="84" height="100" alt="دانشگاه تهران">
+  <a class="course-identity" href="../index.html"><span>دانشگاه تهران · دانشکدهٔ فنی</span><strong>تحلیل سری زمانی</strong><span class="identity-en" lang="en" dir="ltr">TIME SERIES ANALYSIS</span></a>
+  <img class="faculty-logo" src="../assets/fanni_logo.png" width="114" height="100" alt="دانشکدهٔ فنی دانشگاه تهران">
+</header>
+<nav class="main-nav" aria-label="ناوبری اصلی">
+  <a href="../index.html" class="">سرفصل‌های درس</a>
+  <a href="../index.html#assignment-01">صورت تمرین و داده‌ها</a>
+  <a href="../lessons/15-lesson.html">پروژهٔ GNSS</a>
+  <a href="../lessons/20-reference.html">فرمول‌ها و واژه‌نامه</a>
+  <span class="nav-caption">درس‌نامه و تمرین‌های آموزشی</span>
+</nav><div class="lesson-toolbar"><nav aria-label="مسیر صفحه"><a href="../index.html">سرفصل‌های درس</a><span aria-hidden="true">/</span><a href="../index.html#static">برآورد استاتیک</a><span aria-hidden="true">/</span><span>درس ۱۰</span></nav></div>
+<div class="lesson-layout"><aside class="lesson-sidebar">
+<details class="section-menu" open><summary>فهرست مطالب</summary><nav aria-label="فهرست همین درس"><a href="#section-1">مدل مؤلفه‌ای کوواریانس</a><a href="#section-2">ساختارهای متداول نویز</a><a href="#section-3">حذف اثر پارامترهای تابعی</a><a href="#section-4">معادلات درجهٔ دوم مؤلفه‌ها</a><a href="#section-5">مثال عددی: دو گروه خطا با میانگین معلوم</a><a href="#section-6">شناسایی‌پذیری و محدودیت مدل</a></nav></details>
+<details class="all-lessons"><summary>فهرست درس‌ها</summary><nav aria-label="فهرست کامل درس‌ها"><a href="00-introduction.html" ><span>مقدمه</span>موضوع و ساختار درس</a><a href="01-lesson.html" ><span>درس ۱</span>بردارها، ماتریس‌ها و رتبه</a><a href="02-lesson.html" ><span>درس ۲</span>واریانس، کوواریانس و ماتریس هم‌فاکتور</a><a href="03-lesson.html" ><span>درس ۳</span>مدل خطی و کمترین مربعات تعمیم‌یافته</a><a href="case-1-grouped-observations.html" ><span>درس ۴</span>حالت اول: برآورد پارامترهای مشترک از چند دسته مشاهده</a><a href="case-2-independent-groups.html" ><span>درس ۵</span>حالت دوم: دسته‌های مشاهداتی مستقل</a><a href="04-lesson.html" ><span>درس ۶</span>حالت سوم: مجهولات محلی و عمومی با عامل مقیاس مشترک</a><a href="case-4-heterogeneous-covariance.html" ><span>درس ۷</span>حالت چهارم: مدل محلی و عمومی با ضرایب کوواریانس متفاوت</a><a href="case-5-independent-local-global.html" ><span>درس ۸</span>حالت پنجم: مدل محلی و عمومی با دسته‌های مستقل</a><a href="05-lesson.html" ><span>درس ۹</span>حالت ششم: برآورد با اطلاعات پیشین مجهولات</a><a href="06-lesson.html" aria-current=page><span>درس ۱۰</span>برآورد مؤلفه‌های واریانس</a><a href="07-lesson.html" ><span>درس ۱۱</span>کمترین مربعات دسته‌ای و بازگشتی</a><a href="08-lesson.html" ><span>درس ۱۲</span>سیستم‌های دینامیکی خطی همگن و غیرهمگن</a><a href="09-lesson.html" ><span>درس ۱۳</span>ماتریس انتقال وضعیت و حل سیستم غیرهمگن</a><a href="10-lesson.html" ><span>درس ۱۴</span>مدل‌های سرعت ثابت، شتاب ثابت و ورودی معلوم</a><a href="11-lesson.html" ><span>درس ۱۵</span>کوواریانس نویز فرایند و نویز مشاهده</a><a href="estimation-types.html" ><span>درس ۱۶</span>پیش‌بینی، فیلترینگ و هموارسازی</a><a href="12-lesson.html" ><span>درس ۱۷</span>استخراج روابط فیلتر کالمن</a><a href="13-lesson.html" ><span>درس ۱۸</span>مثال عددی فیلتر کالمن</a><a href="14-lesson.html" ><span>درس ۱۹</span>هموارسازی بازگشتی RTS</a><a href="15-lesson.html" ><span>درس ۲۰</span>داده‌های سری زمانی موقعیت و دستگاه محلی ENU</a><a href="16-lesson.html" ><span>درس ۲۱</span>پیاده‌سازی مدل خطی و فیلتر کالمن</a><a href="17-lesson.html" ><span>درس ۲۲</span>ارزیابی آماری و تشخیص ناسازگاری مدل</a><a href="18-lesson.html" ><span>درس ۲۳</span>ورودی سرعت و نرخ گردش در مدل حرکت</a><a href="19-lesson.html" ><span>درس ۲۴</span>پرسش‌های مرور مفاهیم</a><a href="20-reference.html" ><span>پیوست</span>جدول مدل‌ها، روابط و واژه‌نامه</a></nav></details>
+<a class="sidebar-back" href="../index.html">→ بازگشت به سرفصل‌های درس</a>
+</aside>
+<main id="main" class="lesson-main"><article class="lesson" id="ch6"><div class="chapter-top"><span class="chapter-no">10</span><span class="chapter-kicker">برآورد استاتیک</span></div>
+<h1>برآورد مؤلفه‌های واریانس</h1>
+<p class="lead">برآورد شدت مؤلفه‌های مدل تصادفی پس از تعیین ساختار تابعی و کوواریانس مشاهدات.</p>
+<h3 id="section-1">مدل مؤلفه‌ای کوواریانس</h3>
+<div class="mathbox">\[y=A\beta+\varepsilon,\qquad C_y(\theta)=\sum_{i=1}^{r}\theta_iQ_i\]</div>
+<p>ماتریس‌های متقارن \(Q_i\) ساختارهای معلوم کوواریانس و \(\theta_i\) ضرایب مجهول آن‌ها هستند. برای مؤلفه‌های واریانس، معمولاً \(\theta_i=\sigma_i^2\ge0\) تعریف می‌شود. مدل تصادفی باید در تمام تکرارهای حل معتبر بماند. حالت چهارمِ سرشکنی، ساختار بلوک‌ها را تعیین می‌کرد؛ در این بخش، مقدار ضرایب از داده برآورد می‌شود.</p>
+<h3 id="section-2">ساختارهای متداول نویز</h3>
+<div class="mathbox">\[C_y=\sigma_w^2I+\sigma_c^2C(\ell),\qquad[C(\ell)]_{ij}=\exp(-|t_i-t_j|/\ell)\]</div>
+<p>در این نمونه، مؤلفهٔ نخست نویز سفید و مؤلفهٔ دوم نویز همبسته با طول همبستگی \(\ell>0\) است. ساختارهای دیگر مانند همبستگی مرتبهٔ اول، نویز فلیکر یا گام تصادفی به تعریف جداگانهٔ ماتریس مبنا و بررسی مانایی نیاز دارند. نام نویز به‌تنهایی برای ساخت کوواریانس کافی نیست.</p>
+<h3 id="section-3">حذف اثر پارامترهای تابعی</h3>
+<p>برای یک کوواریانس موقت معین مثبت \(C_*\)، ماتریس زیر تعریف می‌شود. در این بخش، \(M\) ماتریس دقتِ باقی‌مانده است و با کوواریانس وضعیت در کالمن تفاوت دارد.</p>
+<div class="mathbox">\[M=C_*^{-1}-C_*^{-1}A(A^TC_*^{-1}A)^{-1}A^TC_*^{-1}\]</div>
+<div class="mathbox">\[MA=C_*^{-1}A-C_*^{-1}A(A^TC_*^{-1}A)^{-1}(A^TC_*^{-1}A)=0\]</div>
+<p>این خاصیت سبب می‌شود جملهٔ مربوط به میانگین مجهول از امید ریاضی فرم‌های درجهٔ دوم حذف شود. شناسایی مؤلفه‌های تصادفی بر اطلاعات باقی‌مانده پس از برازش مدل تابعی متکی است.</p>
+<h3 id="section-4">معادلات درجهٔ دوم مؤلفه‌ها</h3>
+<div class="mathbox">\[N^{(v)}_{ij}=\frac12\operatorname{tr}(MQ_iMQ_j),\qquad\ell^{(v)}_i=\frac12y^TMQ_iMy\]</div>
+<div class="mathbox">\[\boxed{N^{(v)}\hat\theta=\ell^{(v)}}\]</div>
+<p>برای ماتریس موقت ثابت \(M\)، با استفاده از \(MA=0\) داریم:</p>
+<div class="mathbox">\[E(y^TMQ_iMy)=\operatorname{tr}(MQ_iMC_y)=\sum_j\theta_j\operatorname{tr}(MQ_iMQ_j)\]</div>
+<p>این رابطه، مبنای فرم ممانی درجهٔ دوم در برآورد مؤلفه‌هاست. در حل تکراری، کوواریانس موقت با ضرایب جدید بازسازی و معادلات دوباره تشکیل می‌شوند. تفسیر بهینهٔ آماری به فرض توزیع و انتخاب وزن‌ها وابسته است؛ قیود نامنفی، رتبه و همگرایی باید جداگانه کنترل شوند.</p>
+<h3 id="section-5">مثال عددی: دو گروه خطا با میانگین معلوم</h3>
+<div class="mathbox">\[\varepsilon=\begin{bmatrix}1\\-1\\2\\-2\end{bmatrix},\quad C_y=\theta_1\operatorname{diag}(1,1,0,0)+\theta_2\operatorname{diag}(0,0,1,1)\]</div>
+<p>در این مثال، میانگین خطا معلوم و صفر است و هیچ پارامتر تابعی از چهار داده برآورد نمی‌شود. میانگین مربع خطاهای هر گروه، برآورد ممانی واریانس آن گروه است:</p>
+<div class="mathbox">\[\hat\theta_1=\frac{1^2+(-1)^2}{2}=1,\qquad\hat\theta_2=\frac{2^2+(-2)^2}{2}=4\]</div>
+<p>اگر میانگین هر گروه از همان دو مشاهده برآورد می‌شد، درجات آزادی و روابط برآورد واریانس تغییر می‌کرد. در مسائل عمومی، استفاده از باقی‌ماندهٔ برازش و اثر حذف پارامترها ضروری است.</p>
+<h3 id="section-6">شناسایی‌پذیری و محدودیت مدل</h3>
+<div class="mathbox">\[\theta_1I+\theta_2(2I)=(\theta_1+2\theta_2)I\]</div>
+<p>در این نمونه، فقط ترکیب دو ضریب قابل برآورد است و تفکیک آن‌ها از مشاهدات ممکن نیست. در حالت عمومی، شناسایی‌پذیری مؤلفه‌ها پس از حذف فضای مدل تابعی بررسی می‌شود. همچنین خطای مدل تابعی ممکن است در باقی‌مانده ظاهر شود و به‌اشتباه به نویز نسبت داده شود؛ بنابراین افزایش مؤلفه‌های واریانس جایگزین اصلاح مدل تابعی نیست.</p></article>
+<nav class="lesson-pagination" aria-label="درس قبلی و بعدی"><a class="previous-lesson" href="05-lesson.html"><span>درس قبلی</span><strong>→ حالت ششم: برآورد با اطلاعات پیشین مجهولات</strong></a><a class="next-lesson" href="07-lesson.html"><span>بخش بعدی</span><strong>کمترین مربعات دسته‌ای و بازگشتی ←</strong></a></nav>
+</main></div><footer class="site-footer">
+  <div><strong>تحلیل سری زمانی · دانشگاه تهران</strong><p>استاد: دکتر سعید فرزانه <span class="footer-separator">|</span> دستیار آموزشی: علیرضا عطوفی</p></div>
+  <a href="mailto:atoofi.alireza@ut.ac.ir" dir="ltr">atoofi.alireza@ut.ac.ir</a>
+</footer></div>
+</body></html>

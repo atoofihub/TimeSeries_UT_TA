@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="طبقه‌بندی برآورد دینامیکی بر اساس زمان وضعیت موردنظر و آخرین زمان مشاهدهٔ در دسترس.">
+  <meta name="color-scheme" content="light">
+  <title>پیش‌بینی، فیلترینگ و هموارسازی | تحلیل سری زمانی · دانشگاه تهران</title>
+  <link rel="icon" href="../assets/ut_logo.png" type="image/png">
+  <link rel="stylesheet" href="../assets/lesson-content.css">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js" defer></script>
+<script src="../assets/math-config.js" defer></script>
+<script src="../assets/vendor/mathjax-tex-svg.js" defer></script>
+</head><body data-page="lesson" data-lesson-id="estimation-types"><a class="skip-link" href="#main">رفتن به محتوای اصلی</a>
+<div class="page-shell">
+<header class="university-header">
+  <img class="university-logo" src="../assets/ut_logo.png" width="84" height="100" alt="دانشگاه تهران">
+  <a class="course-identity" href="../index.html"><span>دانشگاه تهران · دانشکدهٔ فنی</span><strong>تحلیل سری زمانی</strong><span class="identity-en" lang="en" dir="ltr">TIME SERIES ANALYSIS</span></a>
+  <img class="faculty-logo" src="../assets/fanni_logo.png" width="114" height="100" alt="دانشکدهٔ فنی دانشگاه تهران">
+</header>
+<nav class="main-nav" aria-label="ناوبری اصلی">
+  <a href="../index.html" class="">سرفصل‌های درس</a>
+  <a href="../index.html#assignment-01">صورت تمرین و داده‌ها</a>
+  <a href="../lessons/15-lesson.html">پروژهٔ GNSS</a>
+  <a href="../lessons/20-reference.html">فرمول‌ها و واژه‌نامه</a>
+  <span class="nav-caption">درس‌نامه و تمرین‌های آموزشی</span>
+</nav><div class="lesson-toolbar"><nav aria-label="مسیر صفحه"><a href="../index.html">سرفصل‌های درس</a><span aria-hidden="true">/</span><a href="../index.html#kalman">برآورد دینامیکی و فیلتر کالمن</a><span aria-hidden="true">/</span><span>درس ۱۶</span></nav></div>
+<div class="lesson-layout"><aside class="lesson-sidebar">
+<details class="section-menu" open><summary>فهرست مطالب</summary><nav aria-label="فهرست همین درس"><a href="#section-1">مجموعهٔ اطلاعات و زمان برآورد</a><a href="#section-2">پیش‌بینی وضعیت</a><a href="#section-3">فیلترینگ</a><a href="#section-4">هموارسازی</a><a href="#section-5">مثال زمانی</a></nav></details>
+<details class="all-lessons"><summary>فهرست درس‌ها</summary><nav aria-label="فهرست کامل درس‌ها"><a href="00-introduction.html" ><span>مقدمه</span>موضوع و ساختار درس</a><a href="01-lesson.html" ><span>درس ۱</span>بردارها، ماتریس‌ها و رتبه</a><a href="02-lesson.html" ><span>درس ۲</span>واریانس، کوواریانس و ماتریس هم‌فاکتور</a><a href="03-lesson.html" ><span>درس ۳</span>مدل خطی و کمترین مربعات تعمیم‌یافته</a><a href="case-1-grouped-observations.html" ><span>درس ۴</span>حالت اول: برآورد پارامترهای مشترک از چند دسته مشاهده</a><a href="case-2-independent-groups.html" ><span>درس ۵</span>حالت دوم: دسته‌های مشاهداتی مستقل</a><a href="04-lesson.html" ><span>درس ۶</span>حالت سوم: مجهولات محلی و عمومی با عامل مقیاس مشترک</a><a href="case-4-heterogeneous-covariance.html" ><span>درس ۷</span>حالت چهارم: مدل محلی و عمومی با ضرایب کوواریانس متفاوت</a><a href="case-5-independent-local-global.html" ><span>درس ۸</span>حالت پنجم: مدل محلی و عمومی با دسته‌های مستقل</a><a href="05-lesson.html" ><span>درس ۹</span>حالت ششم: برآورد با اطلاعات پیشین مجهولات</a><a href="06-lesson.html" ><span>درس ۱۰</span>برآورد مؤلفه‌های واریانس</a><a href="07-lesson.html" ><span>درس ۱۱</span>کمترین مربعات دسته‌ای و بازگشتی</a><a href="08-lesson.html" ><span>درس ۱۲</span>سیستم‌های دینامیکی خطی همگن و غیرهمگن</a><a href="09-lesson.html" ><span>درس ۱۳</span>ماتریس انتقال وضعیت و حل سیستم غیرهمگن</a><a href="10-lesson.html" ><span>درس ۱۴</span>مدل‌های سرعت ثابت، شتاب ثابت و ورودی معلوم</a><a href="11-lesson.html" ><span>درس ۱۵</span>کوواریانس نویز فرایند و نویز مشاهده</a><a href="estimation-types.html" aria-current=page><span>درس ۱۶</span>پیش‌بینی، فیلترینگ و هموارسازی</a><a href="12-lesson.html" ><span>درس ۱۷</span>استخراج روابط فیلتر کالمن</a><a href="13-lesson.html" ><span>درس ۱۸</span>مثال عددی فیلتر کالمن</a><a href="14-lesson.html" ><span>درس ۱۹</span>هموارسازی بازگشتی RTS</a><a href="15-lesson.html" ><span>درس ۲۰</span>داده‌های سری زمانی موقعیت و دستگاه محلی ENU</a><a href="16-lesson.html" ><span>درس ۲۱</span>پیاده‌سازی مدل خطی و فیلتر کالمن</a><a href="17-lesson.html" ><span>درس ۲۲</span>ارزیابی آماری و تشخیص ناسازگاری مدل</a><a href="18-lesson.html" ><span>درس ۲۳</span>ورودی سرعت و نرخ گردش در مدل حرکت</a><a href="19-lesson.html" ><span>درس ۲۴</span>پرسش‌های مرور مفاهیم</a><a href="20-reference.html" ><span>پیوست</span>جدول مدل‌ها، روابط و واژه‌نامه</a></nav></details>
+<a class="sidebar-back" href="../index.html">→ بازگشت به سرفصل‌های درس</a>
+</aside>
+<main id="main" class="lesson-main"><article class="lesson" id="estimation-types"><div class="chapter-top"><span class="chapter-no">16</span><span class="chapter-kicker">برآورد دینامیکی و فیلتر کالمن</span></div>
+<h1>پیش‌بینی، فیلترینگ و هموارسازی</h1>
+<p class="lead">طبقه‌بندی برآورد دینامیکی بر اساس زمان وضعیت موردنظر و آخرین زمان مشاهدهٔ در دسترس.</p>
+<h3 id="section-1">مجموعهٔ اطلاعات و زمان برآورد</h3>
+<p>نماد \(y_{1:k}\) مجموعهٔ مشاهدات تا زمان \(t_k\) را نشان می‌دهد. تفاوت سه نوع برآورد به رابطهٔ زمان وضعیت موردنظر با زمان آخرین مشاهده مربوط است؛ روش محاسباتی، مسئله‌ای جداگانه است.</p>
+<div class="mathbox">\[\begin{aligned}\text{Prediction:}\quad& E[x_{k+h}\mid y_{1:k}],\quad h>0,\\\text{Filtering:}\quad& E[x_k\mid y_{1:k}],\\\text{Smoothing:}\quad& E[x_j\mid y_{1:k}],\quad j<k.\end{aligned}\]</div>
+<p>در مدل خطی گاوسی، این امیدهای شرطی با روابط کالمن و هموارساز متناظر محاسبه می‌شوند. در مدل‌های غیرگاوسی، برآورد خطی کمینهٔ میانگین مربع خطا لزوماً با امید شرطی دقیق برابر نیست.</p>
+<h3 id="section-2">پیش‌بینی وضعیت</h3>
+<p>پیش‌بینی، وضعیت زمانی را برآورد می‌کند که مشاهدهٔ متناظر با آن هنوز وارد حل نشده است. اطلاعات موجود با مدل دینامیکی به آن زمان منتقل می‌شود و کوواریانس خطای پیش‌بینی نیز انتشار می‌یابد. در دورهٔ قطع مشاهده، این مرحله همچنان قابل اجراست.</p>
+<h3 id="section-3">فیلترینگ</h3>
+<p>در فیلترینگ، مشاهدهٔ زمان جاری برای اصلاح پیش‌بینی همان زمان استفاده می‌شود. در کاربرد برخط، دادهٔ آینده در دسترس نیست. ترتیب زمانی پردازش و تعریف دقیق اطلاعات مورد استفاده باید در گزارش الگوریتم مشخص باشد.</p>
+<h3 id="section-4">هموارسازی</h3>
+<p>هموارسازی، وضعیت یک زمان گذشته را با استفاده از مشاهدات بعد از آن زمان نیز برآورد می‌کند. این کار برای تحلیل پس‌پردازشی مناسب است. کاهش کوواریانس نسبت به برآورد فیلترشده، در مدل صحیح نتیجهٔ استفاده از اطلاعات بیشتر است؛ این نتیجه به‌تنهایی صحت مدل واقعی را اثبات نمی‌کند.</p>
+<h3 id="section-5">مثال زمانی</h3>
+<p>اگر مشاهدات تا ثانیهٔ ۱۰ در دسترس باشد، برآورد وضعیت ثانیهٔ ۱۲ پیش‌بینی، برآورد وضعیت ثانیهٔ ۱۰ فیلترینگ و بازبرآورد وضعیت ثانیهٔ ۸ هموارسازی است. برای مقایسهٔ عملکرد دو الگوریتم باید مشخص باشد هر یک از چه مجموعه‌ای از مشاهدات استفاده کرده‌اند.</p></article>
+<nav class="lesson-pagination" aria-label="درس قبلی و بعدی"><a class="previous-lesson" href="11-lesson.html"><span>درس قبلی</span><strong>→ کوواریانس نویز فرایند و نویز مشاهده</strong></a><a class="next-lesson" href="12-lesson.html"><span>بخش بعدی</span><strong>استخراج روابط فیلتر کالمن ←</strong></a></nav>
+</main></div><footer class="site-footer">
+  <div><strong>تحلیل سری زمانی · دانشگاه تهران</strong><p>استاد: دکتر سعید فرزانه <span class="footer-separator">|</span> دستیار آموزشی: علیرضا عطوفی</p></div>
+  <a href="mailto:atoofi.alireza@ut.ac.ir" dir="ltr">atoofi.alireza@ut.ac.ir</a>
+</footer></div>
+</body></html>

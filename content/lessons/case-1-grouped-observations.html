@@ -1,0 +1,24 @@
+<div class="chapter-top"><span class="chapter-no">04</span><span class="chapter-kicker">حالت ۱ سرشکنی</span></div>
+<h2>حالت اول: برآورد پارامترهای مشترک از چند دسته مشاهده</h2>
+<p class="lead">تشکیل مدل یکپارچه از چند دسته مشاهده، با امکان وجود کوواریانس بین دسته‌ها.</p>
+<h3>مدل تابعی و نمادها</h3>
+<p>تعداد دسته‌ها را \(m\) و شمارهٔ دسته را \(p\) در نظر می‌گیریم. هر دسته دارای \(n_p\) مشاهده است و همهٔ دسته‌ها یک بردار پارامتر مشترک \(\beta\in\mathbb R^u\) را برآورد می‌کنند. برای دستهٔ \(p\)، ماتریس \(A_p\in\mathbb R^{n_p\times u}\) است.</p>
+<div class="mathbox">\[y_p=A_p\beta+\varepsilon_p,\qquad p=1,\ldots,m\]</div>
+<div class="mathbox">\[y=\begin{bmatrix}y_1\\\vdots\\y_m\end{bmatrix},\quad A=\begin{bmatrix}A_1\\\vdots\\A_m\end{bmatrix},\quad \varepsilon=\begin{bmatrix}\varepsilon_1\\\vdots\\\varepsilon_m\end{bmatrix},\qquad n=\sum_{p=1}^m n_p\]</div>
+<p>در قرارداد تصحیح، مدل به صورت \(y_p+e_p=A_p\beta\) نوشته می‌شود و \(e_p=-\varepsilon_p\) است. تغییر علامت، کوواریانس را تغییر نمی‌دهد.</p>
+<h3>مدل تصادفی</h3>
+<div class="mathbox">\[C_y=[C_{pq}]_{p,q=1}^m,\qquad C_{pq}=\operatorname{Cov}(y_p,y_q),\qquad C_{qp}=C_{pq}^T\]</div>
+<p>در حالت اول، استقلال دسته‌ها فرض نشده است. بنابراین بلوک‌های خارج از قطر ممکن است غیرصفر باشند. ماتریس کل باید متقارن و برای روابط مبتنی بر معکوس، معین مثبت باشد. همچنین رتبهٔ ستونی ماتریس طراحی کل باید کامل باشد؛ لازم نیست هر دسته به‌تنهایی همهٔ مجهولات را تعیین کند.</p>
+<h3>معادلات نرمال و کوواریانس برآورد</h3>
+<div class="mathbox">\[W=C_y^{-1}=[W_{pq}],\qquad J=(y-A\beta)^TW(y-A\beta)\]</div>
+<div class="mathbox">\[N=\sum_{p=1}^m\sum_{q=1}^m A_p^TW_{pq}A_q,\qquad b=\sum_{p=1}^m\sum_{q=1}^m A_p^TW_{pq}y_q\]</div>
+<div class="mathbox">\[\boxed{\hat\beta=N^{-1}b},\qquad\boxed{C_{\hat\beta}=N^{-1}}\]</div>
+<p>درایهٔ بلوکی \(W_{pq}\) از معکوس ماتریس کوواریانس کل به دست می‌آید. در حالت همبسته، بلوک قطری معکوس عموماً با معکوس بلوک قطری برابر نیست. جمله‌های شامل \(p\ne q\) اثر کوواریانس متقابل را وارد معادلات نرمال می‌کنند.</p>
+<h3>مثال عددی: دو مشاهدهٔ همبسته از یک طول</h3>
+<p>دو دسته، هر کدام شامل یک مشاهده از طول ثابت، در نظر گرفته می‌شود. مقادیر مشاهده بر حسب متر و درایه‌های کوواریانس بر حسب مترمربع هستند.</p>
+<div class="mathbox">\[y_1=10,\quad y_2=12,\quad A=\begin{bmatrix}1\\1\end{bmatrix},\qquad C_y=\begin{bmatrix}1&1/2\\1/2&4\end{bmatrix}\]</div>
+<p>همبستگی دو مشاهده برابر \(\rho=0.5/\sqrt{1\times4}=0.25\) است. دترمینان کوواریانس برابر \(15/4>0\) و درایهٔ اول قطر مثبت است؛ بنابراین این ماتریس معین مثبت است.</p>
+<div class="mathbox">\[C_y^{-1}=\frac1{15}\begin{bmatrix}16&-2\\-2&4\end{bmatrix}\]</div>
+<div class="mathbox">\[N=\frac{16}{15},\qquad b=\frac{164}{15},\qquad \boxed{\hat\beta=\frac{41}{4}=10.25\;\mathrm m}\]</div>
+<div class="mathbox">\[\boxed{C_{\hat\beta}=\frac{15}{16}=0.9375\;\mathrm{m^2}},\qquad v=\begin{bmatrix}0.25\\-1.75\end{bmatrix}\]</div>
+<p>در حالت دوم، همین مشاهدات و همین واریانس‌های منفرد با فرض کوواریانس متقابل صفر حل می‌شوند. مقایسهٔ دو جواب، اثر تغییر مدل تصادفی را از تغییر داده جدا می‌کند.</p>

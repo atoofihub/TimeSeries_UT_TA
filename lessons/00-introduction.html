@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="بررسی برآورد پارامترهای ثابت و وضعیت‌های متغیر با زمان، با تأکید بر مدل تابعی و مدل تصادفی.">
+  <meta name="color-scheme" content="light">
+  <title>موضوع و ساختار درس | تحلیل سری زمانی · دانشگاه تهران</title>
+  <link rel="icon" href="../assets/ut_logo.png" type="image/png">
+  <link rel="stylesheet" href="../assets/lesson-content.css">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js" defer></script>
+<script src="../assets/math-config.js" defer></script>
+<script src="../assets/vendor/mathjax-tex-svg.js" defer></script>
+</head><body data-page="lesson" data-lesson-id="intro"><a class="skip-link" href="#main">رفتن به محتوای اصلی</a>
+<div class="page-shell">
+<header class="university-header">
+  <img class="university-logo" src="../assets/ut_logo.png" width="84" height="100" alt="دانشگاه تهران">
+  <a class="course-identity" href="../index.html"><span>دانشگاه تهران · دانشکدهٔ فنی</span><strong>تحلیل سری زمانی</strong><span class="identity-en" lang="en" dir="ltr">TIME SERIES ANALYSIS</span></a>
+  <img class="faculty-logo" src="../assets/fanni_logo.png" width="114" height="100" alt="دانشکدهٔ فنی دانشگاه تهران">
+</header>
+<nav class="main-nav" aria-label="ناوبری اصلی">
+  <a href="../index.html" class="">سرفصل‌های درس</a>
+  <a href="../index.html#assignment-01">صورت تمرین و داده‌ها</a>
+  <a href="../lessons/15-lesson.html">پروژهٔ GNSS</a>
+  <a href="../lessons/20-reference.html">فرمول‌ها و واژه‌نامه</a>
+  <span class="nav-caption">درس‌نامه و تمرین‌های آموزشی</span>
+</nav><div class="lesson-toolbar"><nav aria-label="مسیر صفحه"><a href="../index.html">سرفصل‌های درس</a><span aria-hidden="true">/</span><a href="../index.html#foundations">مبانی ریاضی و مدل خطی</a><span aria-hidden="true">/</span><span>مقدمه</span></nav></div>
+<div class="lesson-layout"><aside class="lesson-sidebar">
+<details class="section-menu" open><summary>فهرست مطالب</summary><nav aria-label="فهرست همین درس"><a href="#section-1">ترتیب مباحث</a><a href="#section-2">قرارداد نمادگذاری</a><a href="#section-3">کاربرد محاسباتی</a></nav></details>
+<details class="all-lessons"><summary>فهرست درس‌ها</summary><nav aria-label="فهرست کامل درس‌ها"><a href="00-introduction.html" aria-current=page><span>مقدمه</span>موضوع و ساختار درس</a><a href="01-lesson.html" ><span>درس ۱</span>بردارها، ماتریس‌ها و رتبه</a><a href="02-lesson.html" ><span>درس ۲</span>واریانس، کوواریانس و ماتریس هم‌فاکتور</a><a href="03-lesson.html" ><span>درس ۳</span>مدل خطی و کمترین مربعات تعمیم‌یافته</a><a href="case-1-grouped-observations.html" ><span>درس ۴</span>حالت اول: برآورد پارامترهای مشترک از چند دسته مشاهده</a><a href="case-2-independent-groups.html" ><span>درس ۵</span>حالت دوم: دسته‌های مشاهداتی مستقل</a><a href="04-lesson.html" ><span>درس ۶</span>حالت سوم: مجهولات محلی و عمومی با عامل مقیاس مشترک</a><a href="case-4-heterogeneous-covariance.html" ><span>درس ۷</span>حالت چهارم: مدل محلی و عمومی با ضرایب کوواریانس متفاوت</a><a href="case-5-independent-local-global.html" ><span>درس ۸</span>حالت پنجم: مدل محلی و عمومی با دسته‌های مستقل</a><a href="05-lesson.html" ><span>درس ۹</span>حالت ششم: برآورد با اطلاعات پیشین مجهولات</a><a href="06-lesson.html" ><span>درس ۱۰</span>برآورد مؤلفه‌های واریانس</a><a href="07-lesson.html" ><span>درس ۱۱</span>کمترین مربعات دسته‌ای و بازگشتی</a><a href="08-lesson.html" ><span>درس ۱۲</span>سیستم‌های دینامیکی خطی همگن و غیرهمگن</a><a href="09-lesson.html" ><span>درس ۱۳</span>ماتریس انتقال وضعیت و حل سیستم غیرهمگن</a><a href="10-lesson.html" ><span>درس ۱۴</span>مدل‌های سرعت ثابت، شتاب ثابت و ورودی معلوم</a><a href="11-lesson.html" ><span>درس ۱۵</span>کوواریانس نویز فرایند و نویز مشاهده</a><a href="estimation-types.html" ><span>درس ۱۶</span>پیش‌بینی، فیلترینگ و هموارسازی</a><a href="12-lesson.html" ><span>درس ۱۷</span>استخراج روابط فیلتر کالمن</a><a href="13-lesson.html" ><span>درس ۱۸</span>مثال عددی فیلتر کالمن</a><a href="14-lesson.html" ><span>درس ۱۹</span>هموارسازی بازگشتی RTS</a><a href="15-lesson.html" ><span>درس ۲۰</span>داده‌های سری زمانی موقعیت و دستگاه محلی ENU</a><a href="16-lesson.html" ><span>درس ۲۱</span>پیاده‌سازی مدل خطی و فیلتر کالمن</a><a href="17-lesson.html" ><span>درس ۲۲</span>ارزیابی آماری و تشخیص ناسازگاری مدل</a><a href="18-lesson.html" ><span>درس ۲۳</span>ورودی سرعت و نرخ گردش در مدل حرکت</a><a href="19-lesson.html" ><span>درس ۲۴</span>پرسش‌های مرور مفاهیم</a><a href="20-reference.html" ><span>پیوست</span>جدول مدل‌ها، روابط و واژه‌نامه</a></nav></details>
+<a class="sidebar-back" href="../index.html">→ بازگشت به سرفصل‌های درس</a>
+</aside>
+<main id="main" class="lesson-main"><article class="lesson" id="intro"><div class="chapter-top"><span class="chapter-no">00</span><span class="chapter-kicker">مبانی ریاضی و مدل خطی</span></div>
+<h1>موضوع و ساختار درس</h1>
+<p class="lead">بررسی برآورد پارامترهای ثابت و وضعیت‌های متغیر با زمان، با تأکید بر مدل تابعی و مدل تصادفی.</p>
+<p>در تحلیل سری زمانی، مشاهدات در زمان‌های متوالی ثبت می‌شوند و ممکن است شامل روند، تغییرات تناوبی، تحول دینامیکی و خطاهای همبسته باشند. برآورد این مؤلفه‌ها به تعریف رابطهٔ میان مشاهده و مجهول و نیز توصیف آماری خطاها نیاز دارد. در مسائل ژئودزی، مختصات، سرعت جابه‌جایی و پارامترهای مشترک شبکه نمونه‌هایی از مجهولات این مدل‌ها هستند.</p>
+<h3 id="section-1">ترتیب مباحث</h3>
+<p>پس از مرور جبر ماتریسی، واریانس و کوواریانس و استخراج روابط کمترین مربعات، شش حالت مرتبط از مدل‌های سرشکنی بررسی می‌شود. در این حالت‌ها، ابتدا ساختار دسته‌های مشاهداتی مطرح است؛ سپس مجهولات محلی و عمومی، ضرایب کوواریانس و اطلاعات پیشین وارد مدل می‌شوند. هر حالت یک صفحهٔ مستقل دارد و شامل مدل تابعی، فرض‌های آماری، روابط حل و مثال عددی است.</p>
+<p>پس از شش حالت، برآورد مؤلفه‌های واریانس و روش‌های دسته‌ای و بازگشتی برای پارامترهای ثابت ارائه می‌شود. ادامهٔ درس به تحول زمانی وضعیت، ماتریس انتقال و مدل‌سازی نویز اختصاص دارد. پیش‌بینی، فیلترینگ و هموارسازی در همین چارچوب تعریف می‌شوند و سپس روابط فیلتر کالمن استخراج و به‌صورت عددی حل می‌شوند.</p>
+<h3 id="section-2">قرارداد نمادگذاری</h3>
+<p>در مدل استاتیک از \(\beta\) برای بردار پارامترهای ثابت و از \(\varepsilon\) برای خطای مشاهده استفاده می‌شود. کوواریانس مطلق مشاهدات با \(C_y\) و ماتریس هم‌فاکتور با \(Q_y\) نمایش داده می‌شود. در بخش دینامیکی، \(x_k\) بردار وضعیت، \(P_k\) کوواریانس خطای برآورد، \(Q_k\) کوواریانس نویز فرایند و \(R_k\) کوواریانس نویز مشاهده است. کاربرد نماد \(Q\) در این دو بخش باید از تعریف همان رابطه مشخص شود.</p>
+<div class="mathbox">\[y=A\beta+\varepsilon,\qquad E(\varepsilon)=0,\qquad C_y=\operatorname{Cov}(\varepsilon)\]</div>
+<p>در قرارداد سرشکنی، تصحیح مشاهدات برابر \(v=A\hat\beta-y\) است. بنابراین باقی‌ماندهٔ آماری \(r=y-A\hat\beta\) و تصحیح \(v\) علامت مخالف دارند. نوشتار \(y+e=A\beta\) در بیان شش حالت، از قرارداد تصحیح استفاده می‌کند.</p>
+<h3 id="section-3">کاربرد محاسباتی</h3>
+<p>کاربرد پایانی درس، تحلیل سری زمانی موقعیت گزارش‌شده توسط گیرندهٔ GNSS است. در این کاربرد، هدف برآورد موقعیت و سرعت و بررسی سازگاری مدل با مشاهدات است. داده‌های نمودار همراه درس‌نامه شامل موقعیت‌های محلی مشاهده‌شده است؛ فایل‌های بستهٔ دانشجویی در بخش حل تمرین اول قرار دارند؛ مشاهدات خام ماهواره‌ای و مرجع دقیق‌تر در این بسته نیستند.</p></article>
+<nav class="lesson-pagination" aria-label="درس قبلی و بعدی"><a class="previous-lesson" href="../index.html">→ سرفصل‌های درس</a><a class="next-lesson" href="01-lesson.html"><span>بخش بعدی</span><strong>بردارها، ماتریس‌ها و رتبه ←</strong></a></nav>
+</main></div><footer class="site-footer">
+  <div><strong>تحلیل سری زمانی · دانشگاه تهران</strong><p>استاد: دکتر سعید فرزانه <span class="footer-separator">|</span> دستیار آموزشی: علیرضا عطوفی</p></div>
+  <a href="mailto:atoofi.alireza@ut.ac.ir" dir="ltr">atoofi.alireza@ut.ac.ir</a>
+</footer></div>
+</body></html>

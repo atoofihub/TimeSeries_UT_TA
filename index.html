@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="درس‌نامهٔ فارسی تحلیل سری زمانی دانشگاه تهران؛ از مبانی و سرشکنی تا فیلتر کالمن و پروژهٔ GNSS.">
+  <meta name="color-scheme" content="light">
+  <title>سرفصل‌های درس | تحلیل سری زمانی · دانشگاه تهران</title>
+  <link rel="icon" href="assets/ut_logo.png" type="image/png">
+  <link rel="stylesheet" href="assets/lesson-content.css">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/site.js" defer></script>
+</head><body data-page="home"><a class="skip-link" href="#main">رفتن به محتوای اصلی</a>
+<div class="page-shell">
+<header class="university-header">
+  <img class="university-logo" src="assets/ut_logo.png" width="84" height="100" alt="دانشگاه تهران">
+  <a class="course-identity" href="index.html"><span>دانشگاه تهران · دانشکدهٔ فنی</span><strong>تحلیل سری زمانی</strong><span class="identity-en" lang="en" dir="ltr">TIME SERIES ANALYSIS</span></a>
+  <img class="faculty-logo" src="assets/fanni_logo.png" width="114" height="100" alt="دانشکدهٔ فنی دانشگاه تهران">
+</header>
+<nav class="main-nav" aria-label="ناوبری اصلی">
+  <a href="index.html" class="active">سرفصل‌های درس</a>
+  <a href="index.html#assignment-01">صورت تمرین و داده‌ها</a>
+  <a href="lessons/15-lesson.html">پروژهٔ GNSS</a>
+  <a href="lessons/20-reference.html">فرمول‌ها و واژه‌نامه</a>
+  <span class="nav-caption">درس‌نامه و تمرین‌های آموزشی</span>
+</nav><main id="main">
+<section class="course-intro" aria-labelledby="course-title">
+  <div class="intro-copy"><span class="eyebrow">کارشناسی ارشد مهندسی نقشه‌برداری · گرایش ژئودزی</span>
+  <h1 id="course-title">تحلیل سری زمانی</h1>
+  <p class="intro-lead">مباحث درس شامل مبانی مدل خطی، شش حالت سرشکنی و برآورد، مؤلفه‌های واریانس، برآورد دسته‌ای و بازگشتی، سیستم‌های دینامیکی و فیلتر کالمن است.</p>
+  <a class="button primary" href="lessons/00-introduction.html">مطالعهٔ مقدمه <span aria-hidden="true">←</span></a>
+  </div>
+  <div class="intro-aside"><svg class="series-visual" viewBox="0 0 420 160" role="img" aria-label="نمای شماتیک مشاهده‌های سری زمانی و روند برآوردشده">
+<defs><pattern id="grid" width="42" height="32" patternUnits="userSpaceOnUse"><path d="M 42 0 L 0 0 0 32" fill="none" stroke="#d8e4ec" stroke-width="1"/></pattern></defs>
+<rect width="420" height="160" fill="url(#grid)"/>
+<path d="M8 125 L25 133 L42 94 L59 108 L76 80 L93 103 L110 73 L127 89 L144 56 L161 81 L178 59 L195 78 L212 56 L229 82 L246 47 L263 65 L280 34 L297 49 L314 22 L331 42 L348 20 L365 35 L382 12 L405 21" fill="none" stroke="#a5b7c5" stroke-width="1.7"/>
+<path d="M8 128 C50 120 60 96 96 91 S148 62 180 67 S220 73 246 61 S288 39 322 33 S372 21 405 18" fill="none" stroke="#247eaf" stroke-width="3"/>
+<g fill="#247eaf"><circle cx="96" cy="91" r="4"/><circle cx="180" cy="67" r="4"/><circle cx="246" cy="61" r="4"/><circle cx="322" cy="33" r="4"/></g>
+<text x="8" y="154" fill="#637788" font-size="10" font-family="monospace" direction="ltr">OBSERVATION → ESTIMATION</text></svg><div class="course-facts"><span><strong>۲۴</strong> درس</span><span><strong>۶</strong> حالت سرشکنی</span><span><strong>۱</strong> پروژهٔ GNSS</span></div><p>روابط ریاضی و مثال‌های عددی</p></div>
+</section>
+<section class="assignment-resources" id="assignment-01" aria-labelledby="assignment-title"><h2 id="assignment-title">تمرین اول: صورت تمرین و داده‌ها</h2><p>صورت تمرین، اقلام تحویل و تعریف داده‌ها را مشخص می‌کند. برای انجام پروژه، فایل کامل مشاهدات را دریافت کنید.</p><ul><li><a href="assets/mission-01/assignment.pdf">صورت تمرین اول، PDF</a></li><li><a href="assets/mission-01/observations.csv" download>دریافت observations.csv</a></li><li><a href="assets/mission-01/can_optional.csv" download>دریافت دادهٔ اختیاری CAN</a></li></ul></section>
+<div class="course-tools"><p class="course-outline">مبانی ← شش حالت سرشکنی ← برآورد استاتیک ← برآورد دینامیکی</p>
+<div class="lesson-search"><label for="lesson-search">جست‌وجو در درس‌ها</label><input id="lesson-search" type="search" placeholder="مثلاً کالمن، کوواریانس، نویز…" autocomplete="off" aria-controls="learning-path"></div></div>
+<div class="path-layout"><aside class="path-sidebar"><h2>فهرست فصل‌ها</h2><nav aria-label="فصل‌های درس"><a href="#foundations"><span>۰۱</span>مبانی ریاضی و مدل خطی</a><a href="#six-models"><span>۰۲</span>شش حالت سرشکنی و برآورد</a><a href="#static"><span>۰۳</span>برآورد استاتیک</a><a href="#dynamics"><span>۰۴</span>سیستم‌های دینامیکی خطی</a><a href="#kalman"><span>۰۵</span>برآورد دینامیکی و فیلتر کالمن</a><a href="#project"><span>۰۶</span>کاربرد در سری زمانی موقعیت</a><a href="#reference"><span>۰۷</span>مرور روابط و اصطلاحات</a></nav><p>ترتیب فصل‌ها بر مبنای مدل‌های سرشکنی، برآورد استاتیک و مدل فضای حالت تنظیم شده است.</p></aside>
+<div class="path-main"><div class="path-title"><h2>ترتیب مباحث</h2><span>مبانی، نظریه و کاربرد</span></div><p id="search-status" class="search-status" role="status" hidden></p><div id="learning-path"><section class="learning-phase" id="foundations" aria-labelledby="heading-foundations">
+  <div class="phase-heading"><span class="phase-number">۰۱</span><div><h3 id="heading-foundations">مبانی ریاضی و مدل خطی</h3><p>جبر ماتریسی، مدل تصادفی و کمترین مربعات</p></div><span class="phase-count">۴ بخش</span></div>
+  <ol class="lesson-list"><li class="lesson-row" data-lesson="intro">
+  <a href="lessons/00-introduction.html" class="lesson-card">
+    <span class="lesson-number">مقدمه</span>
+    <span class="lesson-summary"><strong>موضوع و ساختار درس</strong><span>بررسی برآورد پارامترهای ثابت و وضعیت‌های متغیر با زمان، با تأکید بر مدل تابعی و مدل تصادفی.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="ch1">
+  <a href="lessons/01-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۱</span>
+    <span class="lesson-summary"><strong>بردارها، ماتریس‌ها و رتبه</strong><span>تعریف بردار و ماتریس، عملیات پایه و شرایط تعیین‌پذیری پارامترهای مدل خطی.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="ch2">
+  <a href="lessons/02-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۲</span>
+    <span class="lesson-summary"><strong>واریانس، کوواریانس و ماتریس هم‌فاکتور</strong><span>توصیف آماری خطای مشاهدات و تمایز کوواریانس مطلق، هم‌فاکتور و ماتریس وزن.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="ch3">
+  <a href="lessons/03-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۳</span>
+    <span class="lesson-summary"><strong>مدل خطی و کمترین مربعات تعمیم‌یافته</strong><span>استخراج معادلات نرمال، کوواریانس برآورد و قرارداد باقی‌مانده برای مدل خطی.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li></ol>
+</section><section class="learning-phase" id="six-models" aria-labelledby="heading-six-models">
+  <div class="phase-heading"><span class="phase-number">۰۲</span><div><h3 id="heading-six-models">شش حالت سرشکنی و برآورد</h3><p>تغییر ساختار مجهولات، کوواریانس و اطلاعات پیشین</p></div><span class="phase-count">۶ بخش</span></div>
+  <ol class="lesson-list"><li class="lesson-row" data-lesson="case1">
+  <a href="lessons/case-1-grouped-observations.html" class="lesson-card">
+    <span class="lesson-number">درس ۴</span>
+    <span class="lesson-summary"><strong>حالت اول: برآورد پارامترهای مشترک از چند دسته مشاهده</strong><span>تشکیل مدل یکپارچه از چند دسته مشاهده، با امکان وجود کوواریانس بین دسته‌ها.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="case2">
+  <a href="lessons/case-2-independent-groups.html" class="lesson-card">
+    <span class="lesson-number">درس ۵</span>
+    <span class="lesson-summary"><strong>حالت دوم: دسته‌های مشاهداتی مستقل</strong><span>تجزیهٔ معادلات نرمال به سهم دسته‌های مستقل و ترکیب اطلاعات آن‌ها.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="ch4">
+  <a href="lessons/04-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۶</span>
+    <span class="lesson-summary"><strong>حالت سوم: مجهولات محلی و عمومی با عامل مقیاس مشترک</strong><span>تفکیک پارامترهای مختص هر دسته و پارامترهای مشترک، با مدل کوواریانس مبتنی بر یک عامل مقیاس.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="case4">
+  <a href="lessons/case-4-heterogeneous-covariance.html" class="lesson-card">
+    <span class="lesson-number">درس ۷</span>
+    <span class="lesson-summary"><strong>حالت چهارم: مدل محلی و عمومی با ضرایب کوواریانس متفاوت</strong><span>تعمیم مدل تصادفی حالت سوم با ضرایب متفاوت برای بلوک‌های کوواریانس و حفظ ساختار محلی و عمومی مجهولات.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="case5">
+  <a href="lessons/case-5-independent-local-global.html" class="lesson-card">
+    <span class="lesson-number">درس ۸</span>
+    <span class="lesson-summary"><strong>حالت پنجم: مدل محلی و عمومی با دسته‌های مستقل</strong><span>ساختار بلوکی‌قطری کوواریانس و حذف پارامترهای محلی برای برآورد پارامترهای عمومی.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="ch5">
+  <a href="lessons/05-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۹</span>
+    <span class="lesson-summary"><strong>حالت ششم: برآورد با اطلاعات پیشین مجهولات</strong><span>ترکیب مشاهدات با میانگین و کوواریانس پیشین پارامترها و تفسیر کوواریانس پسین.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li></ol>
+</section><section class="learning-phase" id="static" aria-labelledby="heading-static">
+  <div class="phase-heading"><span class="phase-number">۰۳</span><div><h3 id="heading-static">برآورد استاتیک</h3><p>مؤلفه‌های واریانس و پردازش دسته‌ای و بازگشتی</p></div><span class="phase-count">۲ بخش</span></div>
+  <ol class="lesson-list"><li class="lesson-row" data-lesson="ch6">
+  <a href="lessons/06-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۱۰</span>
+    <span class="lesson-summary"><strong>برآورد مؤلفه‌های واریانس</strong><span>برآورد شدت مؤلفه‌های مدل تصادفی پس از تعیین ساختار تابعی و کوواریانس مشاهدات.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="ch7">
+  <a href="lessons/07-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۱۱</span>
+    <span class="lesson-summary"><strong>کمترین مربعات دسته‌ای و بازگشتی</strong><span>برآورد یک بردار پارامتر ثابت با پردازش هم‌زمان مشاهدات یا افزودن متوالی اطلاعات.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li></ol>
+</section><section class="learning-phase" id="dynamics" aria-labelledby="heading-dynamics">
+  <div class="phase-heading"><span class="phase-number">۰۴</span><div><h3 id="heading-dynamics">سیستم‌های دینامیکی خطی</h3><p>ماتریس انتقال، مدل حرکت و نویز فرایند</p></div><span class="phase-count">۴ بخش</span></div>
+  <ol class="lesson-list"><li class="lesson-row" data-lesson="ch8">
+  <a href="lessons/08-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۱۲</span>
+    <span class="lesson-summary"><strong>سیستم‌های دینامیکی خطی همگن و غیرهمگن</strong><span>تعریف بردار وضعیت، مدل زمان‌پیوسته و زمان‌گسسته و تمایز خطی‌بودن و همگنی معادله.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="ch9">
+  <a href="lessons/09-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۱۳</span>
+    <span class="lesson-summary"><strong>ماتریس انتقال وضعیت و حل سیستم غیرهمگن</strong><span>استخراج ماتریس انتقال از معادلهٔ دینامیکی و محاسبهٔ اثر ورودی در مدل گسسته.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="ch10">
+  <a href="lessons/10-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۱۴</span>
+    <span class="lesson-summary"><strong>مدل‌های سرعت ثابت، شتاب ثابت و ورودی معلوم</strong><span>ساخت ماتریس‌های انتقال در یک و چند بعد و تفکیک شتاب مجهول از شتاب معلوم.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="ch11">
+  <a href="lessons/11-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۱۵</span>
+    <span class="lesson-summary"><strong>کوواریانس نویز فرایند و نویز مشاهده</strong><span>استخراج کوواریانس گسسته از فرض‌های فیزیکی نویز و تفکیک آن از عدم‌قطعیت اندازه‌گیری.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li></ol>
+</section><section class="learning-phase" id="kalman" aria-labelledby="heading-kalman">
+  <div class="phase-heading"><span class="phase-number">۰۵</span><div><h3 id="heading-kalman">برآورد دینامیکی و فیلتر کالمن</h3><p>پیش‌بینی، اصلاح مشاهداتی و هموارسازی</p></div><span class="phase-count">۴ بخش</span></div>
+  <ol class="lesson-list"><li class="lesson-row" data-lesson="estimation-types">
+  <a href="lessons/estimation-types.html" class="lesson-card">
+    <span class="lesson-number">درس ۱۶</span>
+    <span class="lesson-summary"><strong>پیش‌بینی، فیلترینگ و هموارسازی</strong><span>طبقه‌بندی برآورد دینامیکی بر اساس زمان وضعیت موردنظر و آخرین زمان مشاهدهٔ در دسترس.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="ch12">
+  <a href="lessons/12-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۱۷</span>
+    <span class="lesson-summary"><strong>استخراج روابط فیلتر کالمن</strong><span>ترکیب پیش‌بینی دینامیکی و مشاهدهٔ جدید با استفاده از برآورد خطی و انتشار کوواریانس.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="ch13">
+  <a href="lessons/13-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۱۸</span>
+    <span class="lesson-summary"><strong>مثال عددی فیلتر کالمن</strong><span>محاسبهٔ یک گام پیش‌بینی و اصلاح برای وضعیت موقعیت و سرعت در یک بعد.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="ch14">
+  <a href="lessons/14-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۱۹</span>
+    <span class="lesson-summary"><strong>هموارسازی بازگشتی RTS</strong><span>بازبرآورد وضعیت‌های گذشته با استفاده از خروجی فیلتر و مشاهدات بعدی.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li></ol>
+</section><section class="learning-phase" id="project" aria-labelledby="heading-project">
+  <div class="phase-heading"><span class="phase-number">۰۶</span><div><h3 id="heading-project">کاربرد در سری زمانی موقعیت</h3><p>شناخت داده، پیاده‌سازی و ارزیابی</p></div><span class="phase-count">۴ بخش</span></div>
+  <ol class="lesson-list"><li class="lesson-row" data-lesson="ch15">
+  <a href="lessons/15-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۲۰</span>
+    <span class="lesson-summary"><strong>داده‌های سری زمانی موقعیت و دستگاه محلی ENU</strong><span>معرفی مشاهدات موقعیت گیرنده، دستگاه مختصات محلی و بررسی اثر تنظیم کوواریانس‌ها بر برآورد مسیر.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="ch16">
+  <a href="lessons/16-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۲۱</span>
+    <span class="lesson-summary"><strong>پیاده‌سازی مدل خطی و فیلتر کالمن</strong><span>سازمان‌دهی محاسبات، ساخت ماتریس‌های مدل و کنترل مقداردهی اولیه و پایداری عددی.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="ch17">
+  <a href="lessons/17-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۲۲</span>
+    <span class="lesson-summary"><strong>ارزیابی آماری و تشخیص ناسازگاری مدل</strong><span>بررسی نوآوری، کوواریانس برآورد و معیارهای خطا با و بدون مرجع مستقل.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="ch18">
+  <a href="lessons/18-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۲۳</span>
+    <span class="lesson-summary"><strong>ورودی سرعت و نرخ گردش در مدل حرکت</strong><span>تبدیل سرعت اسکالر و نرخ گردش به اطلاعات حرکت با رعایت قرارداد جهت و عدم‌قطعیت ورودی.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li></ol>
+</section><section class="learning-phase" id="reference" aria-labelledby="heading-reference">
+  <div class="phase-heading"><span class="phase-number">۰۷</span><div><h3 id="heading-reference">مرور روابط و اصطلاحات</h3><p>پرسش‌های مفهومی و پیوست روابط</p></div><span class="phase-count">۲ بخش</span></div>
+  <ol class="lesson-list"><li class="lesson-row" data-lesson="ch19">
+  <a href="lessons/19-lesson.html" class="lesson-card">
+    <span class="lesson-number">درس ۲۴</span>
+    <span class="lesson-summary"><strong>پرسش‌های مرور مفاهیم</strong><span>مرور فرض‌ها و روابط مدل‌های سرشکنی، برآورد استاتیک و برآورد دینامیکی.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li><li class="lesson-row" data-lesson="appendix">
+  <a href="lessons/20-reference.html" class="lesson-card">
+    <span class="lesson-number">پیوست</span>
+    <span class="lesson-summary"><strong>جدول مدل‌ها، روابط و واژه‌نامه</strong><span>مرجع فشردهٔ شش حالت سرشکنی و روابط برآورد استاتیک و دینامیکی.</span></span>
+    <span class="lesson-state">مطالعهٔ درس <span aria-hidden="true">←</span></span>
+  </a></li></ol>
+</section></div></div></div>
+</main><footer class="site-footer">
+  <div><strong>تحلیل سری زمانی · دانشگاه تهران</strong><p>استاد: دکتر سعید فرزانه <span class="footer-separator">|</span> دستیار آموزشی: علیرضا عطوفی</p></div>
+  <a href="mailto:atoofi.alireza@ut.ac.ir" dir="ltr">atoofi.alireza@ut.ac.ir</a>
+</footer></div>
+</body></html>

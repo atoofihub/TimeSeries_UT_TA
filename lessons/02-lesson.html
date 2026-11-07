@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="توصیف آماری خطای مشاهدات و تمایز کوواریانس مطلق، هم‌فاکتور و ماتریس وزن.">
+  <meta name="color-scheme" content="light">
+  <title>واریانس، کوواریانس و ماتریس هم‌فاکتور | تحلیل سری زمانی · دانشگاه تهران</title>
+  <link rel="icon" href="../assets/ut_logo.png" type="image/png">
+  <link rel="stylesheet" href="../assets/lesson-content.css">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js" defer></script>
+<script src="../assets/math-config.js" defer></script>
+<script src="../assets/vendor/mathjax-tex-svg.js" defer></script>
+</head><body data-page="lesson" data-lesson-id="ch2"><a class="skip-link" href="#main">رفتن به محتوای اصلی</a>
+<div class="page-shell">
+<header class="university-header">
+  <img class="university-logo" src="../assets/ut_logo.png" width="84" height="100" alt="دانشگاه تهران">
+  <a class="course-identity" href="../index.html"><span>دانشگاه تهران · دانشکدهٔ فنی</span><strong>تحلیل سری زمانی</strong><span class="identity-en" lang="en" dir="ltr">TIME SERIES ANALYSIS</span></a>
+  <img class="faculty-logo" src="../assets/fanni_logo.png" width="114" height="100" alt="دانشکدهٔ فنی دانشگاه تهران">
+</header>
+<nav class="main-nav" aria-label="ناوبری اصلی">
+  <a href="../index.html" class="">سرفصل‌های درس</a>
+  <a href="../index.html#assignment-01">صورت تمرین و داده‌ها</a>
+  <a href="../lessons/15-lesson.html">پروژهٔ GNSS</a>
+  <a href="../lessons/20-reference.html">فرمول‌ها و واژه‌نامه</a>
+  <span class="nav-caption">درس‌نامه و تمرین‌های آموزشی</span>
+</nav><div class="lesson-toolbar"><nav aria-label="مسیر صفحه"><a href="../index.html">سرفصل‌های درس</a><span aria-hidden="true">/</span><a href="../index.html#foundations">مبانی ریاضی و مدل خطی</a><span aria-hidden="true">/</span><span>درس ۲</span></nav></div>
+<div class="lesson-layout"><aside class="lesson-sidebar">
+<details class="section-menu" open><summary>فهرست مطالب</summary><nav aria-label="فهرست همین درس"><a href="#section-1">امید ریاضی و واریانس</a><a href="#section-2">کوواریانس و همبستگی</a><a href="#section-3">معین مثبت و نیمه‌معین مثبت</a><a href="#section-4">کوواریانس مطلق و هم‌فاکتور</a><a href="#section-5">کوواریانس زمانی</a></nav></details>
+<details class="all-lessons"><summary>فهرست درس‌ها</summary><nav aria-label="فهرست کامل درس‌ها"><a href="00-introduction.html" ><span>مقدمه</span>موضوع و ساختار درس</a><a href="01-lesson.html" ><span>درس ۱</span>بردارها، ماتریس‌ها و رتبه</a><a href="02-lesson.html" aria-current=page><span>درس ۲</span>واریانس، کوواریانس و ماتریس هم‌فاکتور</a><a href="03-lesson.html" ><span>درس ۳</span>مدل خطی و کمترین مربعات تعمیم‌یافته</a><a href="case-1-grouped-observations.html" ><span>درس ۴</span>حالت اول: برآورد پارامترهای مشترک از چند دسته مشاهده</a><a href="case-2-independent-groups.html" ><span>درس ۵</span>حالت دوم: دسته‌های مشاهداتی مستقل</a><a href="04-lesson.html" ><span>درس ۶</span>حالت سوم: مجهولات محلی و عمومی با عامل مقیاس مشترک</a><a href="case-4-heterogeneous-covariance.html" ><span>درس ۷</span>حالت چهارم: مدل محلی و عمومی با ضرایب کوواریانس متفاوت</a><a href="case-5-independent-local-global.html" ><span>درس ۸</span>حالت پنجم: مدل محلی و عمومی با دسته‌های مستقل</a><a href="05-lesson.html" ><span>درس ۹</span>حالت ششم: برآورد با اطلاعات پیشین مجهولات</a><a href="06-lesson.html" ><span>درس ۱۰</span>برآورد مؤلفه‌های واریانس</a><a href="07-lesson.html" ><span>درس ۱۱</span>کمترین مربعات دسته‌ای و بازگشتی</a><a href="08-lesson.html" ><span>درس ۱۲</span>سیستم‌های دینامیکی خطی همگن و غیرهمگن</a><a href="09-lesson.html" ><span>درس ۱۳</span>ماتریس انتقال وضعیت و حل سیستم غیرهمگن</a><a href="10-lesson.html" ><span>درس ۱۴</span>مدل‌های سرعت ثابت، شتاب ثابت و ورودی معلوم</a><a href="11-lesson.html" ><span>درس ۱۵</span>کوواریانس نویز فرایند و نویز مشاهده</a><a href="estimation-types.html" ><span>درس ۱۶</span>پیش‌بینی، فیلترینگ و هموارسازی</a><a href="12-lesson.html" ><span>درس ۱۷</span>استخراج روابط فیلتر کالمن</a><a href="13-lesson.html" ><span>درس ۱۸</span>مثال عددی فیلتر کالمن</a><a href="14-lesson.html" ><span>درس ۱۹</span>هموارسازی بازگشتی RTS</a><a href="15-lesson.html" ><span>درس ۲۰</span>داده‌های سری زمانی موقعیت و دستگاه محلی ENU</a><a href="16-lesson.html" ><span>درس ۲۱</span>پیاده‌سازی مدل خطی و فیلتر کالمن</a><a href="17-lesson.html" ><span>درس ۲۲</span>ارزیابی آماری و تشخیص ناسازگاری مدل</a><a href="18-lesson.html" ><span>درس ۲۳</span>ورودی سرعت و نرخ گردش در مدل حرکت</a><a href="19-lesson.html" ><span>درس ۲۴</span>پرسش‌های مرور مفاهیم</a><a href="20-reference.html" ><span>پیوست</span>جدول مدل‌ها، روابط و واژه‌نامه</a></nav></details>
+<a class="sidebar-back" href="../index.html">→ بازگشت به سرفصل‌های درس</a>
+</aside>
+<main id="main" class="lesson-main"><article class="lesson" id="ch2"><div class="chapter-top"><span class="chapter-no">02</span><span class="chapter-kicker">مبانی ریاضی و مدل خطی</span></div>
+<h1>واریانس، کوواریانس و ماتریس هم‌فاکتور</h1>
+<p class="lead">توصیف آماری خطای مشاهدات و تمایز کوواریانس مطلق، هم‌فاکتور و ماتریس وزن.</p>
+<h3 id="section-1">امید ریاضی و واریانس</h3>
+<div class="mathbox">\[y=x+\varepsilon,\quad E(\varepsilon)=0,\quad \operatorname{Var}(\varepsilon)=E[(\varepsilon-E\varepsilon)^2]\]</div>
+<p>واریانس، پراکندگی متغیر تصادفی حول امید ریاضی آن را با واحدِ مربع کمیت بیان می‌کند. انحراف معیار، ریشهٔ دوم واریانس و هم‌واحد با مشاهده است. برای خطاهای ۱−، صفر و ۱+ متر با احتمال‌های برابر، امید ریاضی صفر و واریانس برابر دو سوم مترمربع است. این مقدار مربوط به توزیع مفروض است و با برآورد واریانس نمونه از داده‌های محدود تفاوت دارد.</p>
+<h3 id="section-2">کوواریانس و همبستگی</h3>
+<div class="mathbox">\[C_{ij}=E[(\varepsilon_i-E\varepsilon_i)(\varepsilon_j-E\varepsilon_j)],\qquad \rho_{ij}=\frac{C_{ij}}{\sqrt{C_{ii}C_{jj}}}\]</div>
+<p>درایه‌های قطری ماتریس کوواریانس، واریانس‌ها و درایه‌های خارج از قطر، کوواریانس‌های متقابل هستند. استقلال آماری، در صورت وجود ممان دوم، کوواریانس متقابل صفر را نتیجه می‌دهد. عکس این گزاره در حالت عمومی برقرار نیست؛ در توزیع گاوسی مشترک، ناهمبستگی و استقلال معادل‌اند.</p>
+<h3 id="section-3">معین مثبت و نیمه‌معین مثبت</h3>
+<div class="mathbox">\[C\succeq0\iff z^TCz\ge0\quad\forall z,\qquad C\succ0\iff z^TCz>0\quad\forall z\ne0\]</div>
+<p>ماتریس کوواریانس متقارن و نیمه‌معین مثبت است. برای استفاده از معکوس معمولی آن در روابط GLS، معین مثبت بودن فرض می‌شود. ماتریس کوواریانس تکین به صورت‌بندی جداگانه، مانند حذف وابستگی‌های قطعی یا استفادهٔ موجه از معکوس تعمیم‌یافته، نیاز دارد.</p>
+<div class="mathbox">\[z^TCz=E\{[z^T(\varepsilon-E\varepsilon)]^2\}\ge0\]</div>
+<div class="mathbox">\[C_1=\begin{bmatrix}2&0\\0&3\end{bmatrix}\succ0,\qquad C_2=\begin{bmatrix}1&1\\1&1\end{bmatrix}\succeq0\]</div>
+<p>مقادیر ویژهٔ \(C_1\) برابر ۲ و ۳ و مقادیر ویژهٔ \(C_2\) برابر ۲ و صفر است. مثبت‌بودن درایه‌ها شرط معین مثبت بودن نیست؛ برای مثال، ماتریس با سطرهای \((1,2)\) و \((2,1)\) یک مقدار ویژهٔ منفی دارد.</p>
+<h3 id="section-4">کوواریانس مطلق و هم‌فاکتور</h3>
+<div class="mathbox">\[C_y=\sigma_0^2Q_y,\qquad W=C_y^{-1}=\frac{1}{\sigma_0^2}Q_y^{-1},\qquad P=Q_y^{-1}\]</div>
+<p>ماتریس \(Q_y\) ساختار نسبی دقت و همبستگی را توصیف می‌کند و \(\sigma_0^2\) عامل مقیاس مشترک است. ضرب همهٔ وزن‌ها در یک ضریب مثبت، برآورد کمترین مربعات را تغییر نمی‌دهد؛ اما کوواریانس مطلق مجهولات به این مقیاس وابسته است. در نتیجه، \(N^{-1}\) باید با توجه به تعریف وزن تفسیر شود.</p>
+<h3 id="section-5">کوواریانس زمانی</h3>
+<div class="mathbox">\[C_{\mathrm{white}}=\sigma^2I,\qquad [C_{\mathrm{AR}(1)}]_{ij}=\sigma^2\rho^{|i-j|},\quad|\rho|<1\]</div>
+<p>مدل نخست خطاهای هم‌واریانس و ناهمبسته را نمایش می‌دهد. رابطهٔ دوم، کوواریانس یک فرایند مانای مرتبهٔ اول را در نمونه‌برداری یکنواخت بیان می‌کند. در مدل گام تصادفی، افزایش‌های متوالی می‌توانند مستقل باشند، در حالی که واریانس خود فرایند با زمان افزایش می‌یابد. ثابت‌بودن پارامتر فیزیکی و مانایی آماری خطا دو فرض متفاوت‌اند.</p></article>
+<nav class="lesson-pagination" aria-label="درس قبلی و بعدی"><a class="previous-lesson" href="01-lesson.html"><span>درس قبلی</span><strong>→ بردارها، ماتریس‌ها و رتبه</strong></a><a class="next-lesson" href="03-lesson.html"><span>بخش بعدی</span><strong>مدل خطی و کمترین مربعات تعمیم‌یافته ←</strong></a></nav>
+</main></div><footer class="site-footer">
+  <div><strong>تحلیل سری زمانی · دانشگاه تهران</strong><p>استاد: دکتر سعید فرزانه <span class="footer-separator">|</span> دستیار آموزشی: علیرضا عطوفی</p></div>
+  <a href="mailto:atoofi.alireza@ut.ac.ir" dir="ltr">atoofi.alireza@ut.ac.ir</a>
+</footer></div>
+</body></html>

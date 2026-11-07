@@ -1,0 +1,110 @@
+<div class="chapter-top"><span class="chapter-no">21</span><span class="chapter-kicker">کاربرد در سری زمانی موقعیت</span></div>
+<h2>پیاده‌سازی مدل خطی و فیلتر کالمن</h2>
+<p class="lead">سازمان‌دهی محاسبات، ساخت ماتریس‌های مدل و کنترل مقداردهی اولیه و پایداری عددی.</p>
+<h3>ساختار محاسبات</h3>
+<p>پیاده‌سازی به بخش‌های خواندن و کنترل داده، ساخت مدل، برآورد و ارزیابی تقسیم می‌شود. ترتیب مؤلفه‌های مجهولات و واحد ورودی و خروجی هر تابع باید مشخص باشد. مثال‌های این صفحه با پایتون و NumPy نوشته شده‌اند؛ اجرای آن‌ها بخشی از پروژهٔ محاسباتی است و برای مشاهدهٔ صفحات HTML لازم نیست.</p>
+<h3>ماتریس انتقال و کوواریانس فرایند</h3>
+<p>در کد زیر، ترتیب وضعیت \([E,N,v_E,v_N]^T\) و مدل نویز، شتاب تصادفی ثابت در هر بازه است. ورودی \(dt\) بر حسب ثانیه و \(sigma_a\) بر حسب متر بر مجذور ثانیه تعریف می‌شود.</p>
+<div class="codebox"><button aria-label="کپی کد" class="copy" type="button">Copy</button><pre>import numpy as np
+
+def state_transition(dt):
+    """State order: [E, N, vE, vN]."""
+    if dt &lt;= 0:
+        raise ValueError("dt must be positive")
+    return np.array([
+        [1., 0., dt, 0.],
+        [0., 1., 0., dt],
+        [0., 0., 1., 0.],
+        [0., 0., 0., 1.]
+    ])
+
+def process_covariance(dt, sigma_a):
+    """Piecewise-constant random acceleration per epoch."""
+    if dt &lt;= 0 or sigma_a &lt; 0:
+        raise ValueError("invalid dt or sigma_a")
+    G = np.array([
+        [0.5 * dt**2, 0.],
+        [0., 0.5 * dt**2],
+        [dt, 0.],
+        [0., dt]
+    ])
+    return G @ (sigma_a**2 * np.eye(2)) @ G.T</pre></div><h3>یک گام پیش‌بینی و اصلاح</h3>
+<p>کد زیر از مشاهدهٔ دوبعدی موقعیت استفاده می‌کند. بهره با حل دستگاه خطی محاسبه می‌شود و کوواریانس پس از اصلاح با فرم جوزف به دست می‌آید. ورودی انحراف معیار مشاهده باید مثبت باشد؛ کوواریانس اولیه، ابعاد آرایه‌ها و متناهی‌بودن داده‌ها نیز پیش از فراخوانی کنترل می‌شوند.</p>
+<div class="codebox"><button class="copy" type="button">Copy</button><pre>def kalman_step(x_prev, P_prev, y, dt, sigma_a, sigma_z):
+    """CV Kalman filter, measurement [E, N]."""
+    F = state_transition(dt)
+    Q = process_covariance(dt, sigma_a)
+    H = np.array([[1., 0., 0., 0.],
+                  [0., 1., 0., 0.]])
+    R = sigma_z**2 * np.eye(2)
+    I = np.eye(4)
+
+    # 1) Prediction
+    x_minus = F @ x_prev
+    P_minus = F @ P_prev @ F.T + Q
+
+    # 2) Innovation
+    innovation = y - H @ x_minus
+    S = H @ P_minus @ H.T + R
+
+    # 3) Gain; solve S * X = H * P_minus
+    K = np.linalg.solve(S, H @ P_minus).T
+
+    # 4) State and covariance update
+    x_plus = x_minus + K @ innovation
+    M = I - K @ H
+    P_plus = M @ P_minus @ M.T + K @ R @ K.T
+    P_plus = 0.5 * (P_plus + P_plus.T)
+
+    nis = innovation @ np.linalg.solve(S, innovation)
+    return x_plus, P_plus, x_minus, P_minus, innovation, S, nis</pre></div><p>میانگین‌گیری ماتریس با ترانهادهٔ آن فقط نامتقارنی کوچک ناشی از گردکردن را اصلاح می‌کند و راه‌حل یک کوواریانس نامعتبر یا خطای مدل نیست.</p>
+<h3>حل دسته‌ای و بازگشتی در یک پنجره</h3>
+<p>برای یک بازه با سرعت ثابت، بردار پارامترها \(\beta=[E_0,v_E,N_0,v_N]^T\) است. در مثال زیر، وزن مشاهدات برابر و کوواریانس هر اپک \(R_i=\sigma_z^2I_2\) فرض شده است. در مدل با کوواریانس متفاوت یا همبسته، باید سفیدسازی یا GLS متناسب با همان کوواریانس انجام شود.</p>
+<div class="codebox"><button class="copy" type="button">Copy</button><pre>def build_design_matrix(t, E, N):
+    t = np.asarray(t, dtype=float)
+    tau = t - t[0]
+    n = len(t)
+    A = np.zeros((2*n, 4), dtype=float)
+    A[0::2, 0] = 1.
+    A[0::2, 1] = tau
+    A[1::2, 2] = 1.
+    A[1::2, 3] = tau
+    y = np.column_stack((E, N)).reshape(-1)
+    return A, y
+
+def batch_ls(A, y, sigma_z):
+    # Isotropic/independent measurement covariance.
+    beta, *_ = np.linalg.lstsq(A, y, rcond=None)
+    if np.linalg.matrix_rank(A) != A.shape[1]:
+        raise ValueError("rank deficient design matrix")
+    if sigma_z &lt;= 0:
+        raise ValueError("sigma_z must be positive")
+    normal = (A.T @ A) / sigma_z**2
+    P_beta = np.linalg.solve(normal, np.eye(A.shape[1]))
+    return beta, P_beta
+
+def recursive_information_ls(A, y, sigma_z):
+    if sigma_z &lt;= 0:
+        raise ValueError("sigma_z must be positive")
+    N = np.zeros((4, 4))
+    b = np.zeros(4)
+    history = []
+    for i in range(len(y)//2):
+        Ai = A[2*i:2*i+2, :]
+        yi = y[2*i:2*i+2]
+        N += (Ai.T @ Ai) / sigma_z**2
+        b += (Ai.T @ yi) / sigma_z**2
+        if np.linalg.matrix_rank(N) == 4:
+            beta_k = np.linalg.solve(N, b)
+            covariance_k = np.linalg.solve(N, np.eye(4))
+            history.append({"beta": beta_k, "covariance": covariance_k})
+        else:
+            history.append(None)
+    return history</pre></div><p>تطابق جواب نهایی حل دسته‌ای و بازگشتی، یک کنترل محاسباتی برای داده و وزن یکسان است. این تطابق، درستی مدل حرکت یا صحت کوواریانس‌های انتخاب‌شده را اثبات نمی‌کند.</p>
+<h3>مقداردهی اولیه و جلوگیری از شمارش دوبارهٔ اطلاعات</h3>
+<p>یک روش مقداردهی اولیه، برازش مدل کوتاه‌مدت به چند مشاهدهٔ ابتدایی است. تعداد این مشاهدات باید در گزارش مشخص شود. سپس پارامترهای برازش و کوواریانس آن‌ها به وضعیت در زمان آخرین مشاهدهٔ اولیه منتقل می‌شوند. فیلتر از مشاهدهٔ بعد آغاز می‌شود تا همان داده‌ها دوباره وارد مرحلهٔ اصلاح نشوند.</p>
+<div class="mathbox">\[x_{\mathrm{init}}=M\hat\beta,\qquad P_{\mathrm{init}}=MP_\beta M^T\]</div>
+<div class="mathbox">\[M=\begin{bmatrix}1&\tau&0&0\\0&0&1&\tau\\0&1&0&0\\0&0&0&1\end{bmatrix}\]</div>
+<p>در این ماتریس، \(\tau\) فاصلهٔ زمانی ابتدا تا انتهای پنجرهٔ مقداردهی اولیه است. ترتیب مجهولات مدل دسته‌ای با ترتیب وضعیت فیلتر تفاوت دارد و تبدیل بالا این تفاوت را لحاظ می‌کند. اگر تغییرپذیری حرکت در پنجره قابل صرف‌نظر نباشد، کوواریانس حاصل از برازش استاتیک به‌تنهایی برای مقداردهی اولیه کافی نیست.</p>
+<h3>خروجی‌ها و بازتولید محاسبات</h3>
+<p>خروجی لازم شامل سری زمانی موقعیت و سرعت، مسیر افقی، نوآوری، کوواریانس نوآوری، NIS و کوواریانس برآورد است. گزارش باید نسخهٔ کد، بازهٔ داده، ترتیب مجهولات، مدل نویز، پارامترهای تنظیم و روش مقداردهی اولیه را ثبت کند. محور نمودارها باید واحد و زمان متناظر داشته باشد.</p>

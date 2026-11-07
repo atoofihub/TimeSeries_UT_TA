@@ -1,0 +1,4 @@
+* text=auto eol=lf
+
+# Preserve the supplied scientific CSV files byte for byte.
+*.csv -text whitespace=trailing-space,space-before-tab,cr-at-eol

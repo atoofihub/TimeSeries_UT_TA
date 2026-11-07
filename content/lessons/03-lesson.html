@@ -1,0 +1,25 @@
+<div class="chapter-top"><span class="chapter-no">03</span><span class="chapter-kicker">مبانی ریاضی و مدل خطی</span></div>
+<h2>مدل خطی و کمترین مربعات تعمیم‌یافته</h2>
+<p class="lead">استخراج معادلات نرمال، کوواریانس برآورد و قرارداد باقی‌مانده برای مدل خطی.</p>
+<h3>مدل تابعی و مدل تصادفی</h3>
+<div class="mathbox">\[y=A\beta+\varepsilon,\qquad E(y)=A\beta,\qquad\operatorname{Cov}(y)=C_y\]</div>
+<p>مدل تابعی، ارتباط مشاهدات و پارامترها را تعیین می‌کند. مدل تصادفی شامل واریانس مشاهدات و کوواریانس متقابل آن‌هاست. در این بخش، \(y\in\mathbb R^n\)، \(\beta\in\mathbb R^u\)، ماتریس طراحی \(A\) معلوم و دارای رتبهٔ ستونی کامل و \(C_y\) معلوم و معین مثبت فرض می‌شود.</p>
+<h3>تابع هدف و معادلات نرمال</h3>
+<div class="mathbox">\[J(\beta)=(y-A\beta)^TC_y^{-1}(y-A\beta)\]</div>
+<div class="mathbox">\[\frac{\partial J}{\partial\beta}=-2A^TC_y^{-1}y+2A^TC_y^{-1}A\beta=0\]</div>
+<div class="mathbox">\[N=A^TC_y^{-1}A,\qquad b=A^TC_y^{-1}y,\qquad N\hat\beta=b\]</div>
+<p>ماتریس نرمال \(N\) با فرض‌های فوق معین مثبت است؛ زیرا برای هر \(z\ne0\)، مقدار \((Az)^TC_y^{-1}(Az)\) مثبت خواهد بود. در نتیجه، برآورد یکتا است.</p>
+<div class="mathbox">\[\boxed{\hat\beta=(A^TC_y^{-1}A)^{-1}A^TC_y^{-1}y}\]</div>
+<h3>خواص آماری برآورد</h3>
+<p>در مدل خطی با خطای میانگین‌صفر و کوواریانس معلوم، این برآورد در میان برآوردگرهای خطی نااریب دارای کمترین کوواریانس است. این نتیجه به گاوسی‌بودن خطاها نیاز ندارد. با فرض گاوسی، برآورد GLS با برآورد بیشینهٔ درست‌نمایی پارامترهای ثابت نیز منطبق است.</p>
+<div class="mathbox">\[\hat\beta-\beta=N^{-1}A^TC_y^{-1}\varepsilon\]</div>
+<div class="mathbox">\[C_{\hat\beta}=N^{-1}A^TC_y^{-1}C_yC_y^{-1}AN^{-1}=\boxed{N^{-1}}\]</div>
+<p>اگر وزن \(P=Q_y^{-1}\) تعریف شده باشد، نتیجه به صورت \(C_{\hat\beta}=\sigma_0^2(A^TPA)^{-1}\) نوشته می‌شود. برای عامل مقیاس نامعلوم و افزونگی \(n-u>0\)، برآورد معمول آن \(\hat\sigma_0^2=r^TPr/(n-u)\) است.</p>
+<h3>باقی‌مانده و تصحیح مشاهدات</h3>
+<div class="mathbox">\[r=y-A\hat\beta,\quad v=-r,\quad \hat y=y+v=A\hat\beta,\quad A^TC_y^{-1}r=0\]</div>
+<p>رابطهٔ آخر، تعامد وزن‌دار باقی‌مانده با فضای ستون‌های ماتریس طراحی است. کوچک‌بودن باقی‌مانده به‌تنهایی صحت مدل یا دقت مطلق پارامترها را تضمین نمی‌کند؛ افزونگی، ساختار وزن و کیفیت مدل تابعی نیز باید بررسی شوند.</p>
+<h3>مثال عددی: برآورد یک مختصات ثابت</h3>
+<div class="mathbox">\[y=\begin{bmatrix}10\\12\\11\end{bmatrix},\quad A=\begin{bmatrix}1\\1\\1\end{bmatrix},\quad C_y=\operatorname{diag}(1,4,1)\]</div>
+<div class="mathbox">\[N=1+\tfrac14+1=\tfrac94,\qquad b=10+\tfrac{12}{4}+11=24\]</div>
+<div class="mathbox">\[\hat\beta=\frac{24}{9/4}=\frac{32}{3}\simeq10.6667\;\mathrm m,\qquad C_{\hat\beta}=\frac49\;\mathrm{m^2}\]</div>
+<p>مشاهدهٔ دوم به علت واریانس چهاربرابر، یک‌چهارم وزن هر یک از دو مشاهدهٔ دیگر را دارد. در شش حالت بعد، همین اصل با تغییر ساختار دسته‌های مشاهده، مجهولات و اطلاعات پیشین به کار می‌رود.</p>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="استخراج کوواریانس گسسته از فرض‌های فیزیکی نویز و تفکیک آن از عدم‌قطعیت اندازه‌گیری.">
+  <meta name="color-scheme" content="light">
+  <title>کوواریانس نویز فرایند و نویز مشاهده | تحلیل سری زمانی · دانشگاه تهران</title>
+  <link rel="icon" href="../assets/ut_logo.png" type="image/png">
+  <link rel="stylesheet" href="../assets/lesson-content.css">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js" defer></script>
+<script src="../assets/math-config.js" defer></script>
+<script src="../assets/vendor/mathjax-tex-svg.js" defer></script>
+</head><body data-page="lesson" data-lesson-id="ch11"><a class="skip-link" href="#main">رفتن به محتوای اصلی</a>
+<div class="page-shell">
+<header class="university-header">
+  <img class="university-logo" src="../assets/ut_logo.png" width="84" height="100" alt="دانشگاه تهران">
+  <a class="course-identity" href="../index.html"><span>دانشگاه تهران · دانشکدهٔ فنی</span><strong>تحلیل سری زمانی</strong><span class="identity-en" lang="en" dir="ltr">TIME SERIES ANALYSIS</span></a>
+  <img class="faculty-logo" src="../assets/fanni_logo.png" width="114" height="100" alt="دانشکدهٔ فنی دانشگاه تهران">
+</header>
+<nav class="main-nav" aria-label="ناوبری اصلی">
+  <a href="../index.html" class="">سرفصل‌های درس</a>
+  <a href="../index.html#assignment-01">صورت تمرین و داده‌ها</a>
+  <a href="../lessons/15-lesson.html">پروژهٔ GNSS</a>
+  <a href="../lessons/20-reference.html">فرمول‌ها و واژه‌نامه</a>
+  <span class="nav-caption">درس‌نامه و تمرین‌های آموزشی</span>
+</nav><div class="lesson-toolbar"><nav aria-label="مسیر صفحه"><a href="../index.html">سرفصل‌های درس</a><span aria-hidden="true">/</span><a href="../index.html#dynamics">سیستم‌های دینامیکی خطی</a><span aria-hidden="true">/</span><span>درس ۱۵</span></nav></div>
+<div class="lesson-layout"><aside class="lesson-sidebar">
+<details class="section-menu" open><summary>فهرست مطالب</summary><nav aria-label="فهرست همین درس"><a href="#section-1">مدل تصادفی فضای حالت</a><a href="#section-2">شتاب تصادفی ثابت در هر بازه</a><a href="#section-3">مثال عددی نویز شتاب گسسته</a><a href="#section-4">شتاب سفید در زمان پیوسته</a><a href="#section-5">مدل شتاب ثابت با تحریک جرک سفید</a><a href="#section-6">مدل کوواریانس مشاهده</a></nav></details>
+<details class="all-lessons"><summary>فهرست درس‌ها</summary><nav aria-label="فهرست کامل درس‌ها"><a href="00-introduction.html" ><span>مقدمه</span>موضوع و ساختار درس</a><a href="01-lesson.html" ><span>درس ۱</span>بردارها، ماتریس‌ها و رتبه</a><a href="02-lesson.html" ><span>درس ۲</span>واریانس، کوواریانس و ماتریس هم‌فاکتور</a><a href="03-lesson.html" ><span>درس ۳</span>مدل خطی و کمترین مربعات تعمیم‌یافته</a><a href="case-1-grouped-observations.html" ><span>درس ۴</span>حالت اول: برآورد پارامترهای مشترک از چند دسته مشاهده</a><a href="case-2-independent-groups.html" ><span>درس ۵</span>حالت دوم: دسته‌های مشاهداتی مستقل</a><a href="04-lesson.html" ><span>درس ۶</span>حالت سوم: مجهولات محلی و عمومی با عامل مقیاس مشترک</a><a href="case-4-heterogeneous-covariance.html" ><span>درس ۷</span>حالت چهارم: مدل محلی و عمومی با ضرایب کوواریانس متفاوت</a><a href="case-5-independent-local-global.html" ><span>درس ۸</span>حالت پنجم: مدل محلی و عمومی با دسته‌های مستقل</a><a href="05-lesson.html" ><span>درس ۹</span>حالت ششم: برآورد با اطلاعات پیشین مجهولات</a><a href="06-lesson.html" ><span>درس ۱۰</span>برآورد مؤلفه‌های واریانس</a><a href="07-lesson.html" ><span>درس ۱۱</span>کمترین مربعات دسته‌ای و بازگشتی</a><a href="08-lesson.html" ><span>درس ۱۲</span>سیستم‌های دینامیکی خطی همگن و غیرهمگن</a><a href="09-lesson.html" ><span>درس ۱۳</span>ماتریس انتقال وضعیت و حل سیستم غیرهمگن</a><a href="10-lesson.html" ><span>درس ۱۴</span>مدل‌های سرعت ثابت، شتاب ثابت و ورودی معلوم</a><a href="11-lesson.html" aria-current=page><span>درس ۱۵</span>کوواریانس نویز فرایند و نویز مشاهده</a><a href="estimation-types.html" ><span>درس ۱۶</span>پیش‌بینی، فیلترینگ و هموارسازی</a><a href="12-lesson.html" ><span>درس ۱۷</span>استخراج روابط فیلتر کالمن</a><a href="13-lesson.html" ><span>درس ۱۸</span>مثال عددی فیلتر کالمن</a><a href="14-lesson.html" ><span>درس ۱۹</span>هموارسازی بازگشتی RTS</a><a href="15-lesson.html" ><span>درس ۲۰</span>داده‌های سری زمانی موقعیت و دستگاه محلی ENU</a><a href="16-lesson.html" ><span>درس ۲۱</span>پیاده‌سازی مدل خطی و فیلتر کالمن</a><a href="17-lesson.html" ><span>درس ۲۲</span>ارزیابی آماری و تشخیص ناسازگاری مدل</a><a href="18-lesson.html" ><span>درس ۲۳</span>ورودی سرعت و نرخ گردش در مدل حرکت</a><a href="19-lesson.html" ><span>درس ۲۴</span>پرسش‌های مرور مفاهیم</a><a href="20-reference.html" ><span>پیوست</span>جدول مدل‌ها، روابط و واژه‌نامه</a></nav></details>
+<a class="sidebar-back" href="../index.html">→ بازگشت به سرفصل‌های درس</a>
+</aside>
+<main id="main" class="lesson-main"><article class="lesson" id="ch11"><div class="chapter-top"><span class="chapter-no">15</span><span class="chapter-kicker">سیستم‌های دینامیکی خطی</span></div>
+<h1>کوواریانس نویز فرایند و نویز مشاهده</h1>
+<p class="lead">استخراج کوواریانس گسسته از فرض‌های فیزیکی نویز و تفکیک آن از عدم‌قطعیت اندازه‌گیری.</p>
+<h3 id="section-1">مدل تصادفی فضای حالت</h3>
+<div class="mathbox">\[x_{k+1}=F_kx_k+B_ku_k+w_k,\qquad y_k=H_kx_k+v_k\]</div>
+<div class="mathbox">\[E(w_k)=0,\quad\operatorname{Cov}(w_k)=Q_k,\qquad E(v_k)=0,\quad\operatorname{Cov}(v_k)=R_k\]</div>
+<p>در مدل استاندارد، نویز فرایند و مشاهده نسبت به یکدیگر ناهمبسته‌اند و کوواریانس زمانی خارج از اپک برای آن‌ها صفر فرض می‌شود. اعتبار این فرض‌ها باید در کاربرد واقعی بررسی شود. در این بخش، نماد نویز مشاهده با تصحیح مشاهدات در مدل استاتیک ارتباط نمادین ندارد.</p>
+<h3 id="section-2">شتاب تصادفی ثابت در هر بازه</h3>
+<div class="mathbox">\[w_k=G_ka_k,\qquad G_k=\begin{bmatrix}\tfrac12\Delta t_k^2I_2\\\Delta t_k I_2\end{bmatrix},\qquad\operatorname{Cov}(a_k)=\Sigma_a\]</div>
+<div class="mathbox">\[\boxed{Q_k=G_k\Sigma_aG_k^T}\]</div>
+<p>فرض این مدل آن است که شتاب تصادفی درون هر بازه ثابت است و در بازه‌های متفاوت، ناهمبسته در نظر گرفته می‌شود. قانون انتشار کوواریانس رابطهٔ بالا را نتیجه می‌دهد. ماتریس حاصل نیمه‌معین مثبت است و برای وضعیت چهاربعدی، ممکن است رتبهٔ آن فقط دو باشد.</p>
+<div class="mathbox">\[\operatorname{Cov}(G_ka_k)=G_kE[(a_k-Ea_k)(a_k-Ea_k)^T]G_k^T\]</div>
+<h3 id="section-3">مثال عددی نویز شتاب گسسته</h3>
+<div class="mathbox">\[\Delta t=2\;\mathrm s,\quad\sigma_a=1\;\mathrm{m/s^2},\quad G=\begin{bmatrix}2\\2\end{bmatrix},\quad Q=\begin{bmatrix}4&4\\4&4\end{bmatrix}\]</div>
+<p>درایه‌های قطر به‌ترتیب واریانس موقعیت و سرعت و درایهٔ خارج از قطر، کوواریانس موقعیت و سرعت هستند. واحد این درایه‌ها به‌ترتیب مترمربع، مترمربع بر ثانیه‌مربع و مترمربع بر ثانیه است.</p>
+<h3 id="section-4">شتاب سفید در زمان پیوسته</h3>
+<div class="mathbox">\[E[a(t)a(s)]=q_a\delta(t-s),\qquad Q=q_a\begin{bmatrix}\Delta t^3/3&\Delta t^2/2\\\Delta t^2/2&\Delta t\end{bmatrix}\]</div>
+<div class="mathbox">\[w_p=\int_0^{\Delta t}(\Delta t-s)a(s)\,ds,\qquad w_v=\int_0^{\Delta t}a(s)\,ds\]</div>
+<div class="mathbox">\[\operatorname{Var}(w_p)=q_a\int_0^{\Delta t}(\Delta t-s)^2ds,\quad\operatorname{Cov}(w_p,w_v)=q_a\int_0^{\Delta t}(\Delta t-s)ds\]</div>
+<p>شدت طیفی \(q_a\) با واریانس شتاب ثابت در هر بازه یک کمیت واحد نیست. توان‌های زمان و واحد پارامتر نویز در دو مدل متفاوت‌اند؛ بنابراین دو فرمول را نمی‌توان با یک مقدار عددی یکسان از پارامتر نویز جایگزین کرد.</p>
+<h3 id="section-5">مدل شتاب ثابت با تحریک جرک سفید</h3>
+<div class="mathbox">\[Q=q_j\begin{bmatrix}\Delta t^5/20&\Delta t^4/8&\Delta t^3/6\\\Delta t^4/8&\Delta t^3/3&\Delta t^2/2\\\Delta t^3/6&\Delta t^2/2&\Delta t\end{bmatrix}\]</div>
+<p>این مدل برای وضعیت موقعیت، سرعت و شتاب و با فرض مشتق تصادفی شتاب در زمان پیوسته نوشته شده است. انتخاب مدل نویز باید با مرتبهٔ مدل حرکت و فرض تحریک سازگار باشد.</p>
+<h3 id="section-6">مدل کوواریانس مشاهده</h3>
+<div class="mathbox">\[R_k=\begin{bmatrix}\sigma_{E,k}^2&\rho_k\sigma_{E,k}\sigma_{N,k}\\\rho_k\sigma_{E,k}\sigma_{N,k}&\sigma_{N,k}^2\end{bmatrix}\]</div>
+<p>برای کوواریانس معین مثبت دوبعدی، انحراف معیارهای مثبت و قدرمطلق همبستگی کمتر از یک فرض می‌شود. شاخص دقت اعلامی گیرنده لزوماً انحراف معیار هر مؤلفه نیست و پیش از تبدیل به کوواریانس نیاز به تفسیر دارد. افزایش نویز فرایند، عدم‌قطعیت پیش‌بینی را افزایش می‌دهد؛ اثر آن بر وزن مشاهده از روابط بهرهٔ کالمن مشخص می‌شود.</p></article>
+<nav class="lesson-pagination" aria-label="درس قبلی و بعدی"><a class="previous-lesson" href="10-lesson.html"><span>درس قبلی</span><strong>→ مدل‌های سرعت ثابت، شتاب ثابت و ورودی معلوم</strong></a><a class="next-lesson" href="estimation-types.html"><span>بخش بعدی</span><strong>پیش‌بینی، فیلترینگ و هموارسازی ←</strong></a></nav>
+</main></div><footer class="site-footer">
+  <div><strong>تحلیل سری زمانی · دانشگاه تهران</strong><p>استاد: دکتر سعید فرزانه <span class="footer-separator">|</span> دستیار آموزشی: علیرضا عطوفی</p></div>
+  <a href="mailto:atoofi.alireza@ut.ac.ir" dir="ltr">atoofi.alireza@ut.ac.ir</a>
+</footer></div>
+</body></html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="مرور فرض‌ها و روابط مدل‌های سرشکنی، برآورد استاتیک و برآورد دینامیکی.">
+  <meta name="color-scheme" content="light">
+  <title>پرسش‌های مرور مفاهیم | تحلیل سری زمانی · دانشگاه تهران</title>
+  <link rel="icon" href="../assets/ut_logo.png" type="image/png">
+  <link rel="stylesheet" href="../assets/lesson-content.css">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/site.js" defer></script>
+<script src="../assets/math-config.js" defer></script>
+<script src="../assets/vendor/mathjax-tex-svg.js" defer></script>
+</head><body data-page="lesson" data-lesson-id="ch19"><a class="skip-link" href="#main">رفتن به محتوای اصلی</a>
+<div class="page-shell">
+<header class="university-header">
+  <img class="university-logo" src="../assets/ut_logo.png" width="84" height="100" alt="دانشگاه تهران">
+  <a class="course-identity" href="../index.html"><span>دانشگاه تهران · دانشکدهٔ فنی</span><strong>تحلیل سری زمانی</strong><span class="identity-en" lang="en" dir="ltr">TIME SERIES ANALYSIS</span></a>
+  <img class="faculty-logo" src="../assets/fanni_logo.png" width="114" height="100" alt="دانشکدهٔ فنی دانشگاه تهران">
+</header>
+<nav class="main-nav" aria-label="ناوبری اصلی">
+  <a href="../index.html" class="">سرفصل‌های درس</a>
+  <a href="../index.html#assignment-01">صورت تمرین و داده‌ها</a>
+  <a href="../lessons/15-lesson.html">پروژهٔ GNSS</a>
+  <a href="../lessons/20-reference.html">فرمول‌ها و واژه‌نامه</a>
+  <span class="nav-caption">درس‌نامه و تمرین‌های آموزشی</span>
+</nav><div class="lesson-toolbar"><nav aria-label="مسیر صفحه"><a href="../index.html">سرفصل‌های درس</a><span aria-hidden="true">/</span><a href="../index.html#reference">مرور روابط و اصطلاحات</a><span aria-hidden="true">/</span><span>درس ۲۴</span></nav></div>
+<div class="lesson-layout"><aside class="lesson-sidebar">
+<details class="section-menu" open><summary>فهرست مطالب</summary><nav aria-label="فهرست همین درس"><a href="#main">مطالعهٔ این بخش</a></nav></details>
+<details class="all-lessons"><summary>فهرست درس‌ها</summary><nav aria-label="فهرست کامل درس‌ها"><a href="00-introduction.html" ><span>مقدمه</span>موضوع و ساختار درس</a><a href="01-lesson.html" ><span>درس ۱</span>بردارها، ماتریس‌ها و رتبه</a><a href="02-lesson.html" ><span>درس ۲</span>واریانس، کوواریانس و ماتریس هم‌فاکتور</a><a href="03-lesson.html" ><span>درس ۳</span>مدل خطی و کمترین مربعات تعمیم‌یافته</a><a href="case-1-grouped-observations.html" ><span>درس ۴</span>حالت اول: برآورد پارامترهای مشترک از چند دسته مشاهده</a><a href="case-2-independent-groups.html" ><span>درس ۵</span>حالت دوم: دسته‌های مشاهداتی مستقل</a><a href="04-lesson.html" ><span>درس ۶</span>حالت سوم: مجهولات محلی و عمومی با عامل مقیاس مشترک</a><a href="case-4-heterogeneous-covariance.html" ><span>درس ۷</span>حالت چهارم: مدل محلی و عمومی با ضرایب کوواریانس متفاوت</a><a href="case-5-independent-local-global.html" ><span>درس ۸</span>حالت پنجم: مدل محلی و عمومی با دسته‌های مستقل</a><a href="05-lesson.html" ><span>درس ۹</span>حالت ششم: برآورد با اطلاعات پیشین مجهولات</a><a href="06-lesson.html" ><span>درس ۱۰</span>برآورد مؤلفه‌های واریانس</a><a href="07-lesson.html" ><span>درس ۱۱</span>کمترین مربعات دسته‌ای و بازگشتی</a><a href="08-lesson.html" ><span>درس ۱۲</span>سیستم‌های دینامیکی خطی همگن و غیرهمگن</a><a href="09-lesson.html" ><span>درس ۱۳</span>ماتریس انتقال وضعیت و حل سیستم غیرهمگن</a><a href="10-lesson.html" ><span>درس ۱۴</span>مدل‌های سرعت ثابت، شتاب ثابت و ورودی معلوم</a><a href="11-lesson.html" ><span>درس ۱۵</span>کوواریانس نویز فرایند و نویز مشاهده</a><a href="estimation-types.html" ><span>درس ۱۶</span>پیش‌بینی، فیلترینگ و هموارسازی</a><a href="12-lesson.html" ><span>درس ۱۷</span>استخراج روابط فیلتر کالمن</a><a href="13-lesson.html" ><span>درس ۱۸</span>مثال عددی فیلتر کالمن</a><a href="14-lesson.html" ><span>درس ۱۹</span>هموارسازی بازگشتی RTS</a><a href="15-lesson.html" ><span>درس ۲۰</span>داده‌های سری زمانی موقعیت و دستگاه محلی ENU</a><a href="16-lesson.html" ><span>درس ۲۱</span>پیاده‌سازی مدل خطی و فیلتر کالمن</a><a href="17-lesson.html" ><span>درس ۲۲</span>ارزیابی آماری و تشخیص ناسازگاری مدل</a><a href="18-lesson.html" ><span>درس ۲۳</span>ورودی سرعت و نرخ گردش در مدل حرکت</a><a href="19-lesson.html" aria-current=page><span>درس ۲۴</span>پرسش‌های مرور مفاهیم</a><a href="20-reference.html" ><span>پیوست</span>جدول مدل‌ها، روابط و واژه‌نامه</a></nav></details>
+<a class="sidebar-back" href="../index.html">→ بازگشت به سرفصل‌های درس</a>
+</aside>
+<main id="main" class="lesson-main"><article class="lesson" id="ch19"><div class="chapter-top"><span class="chapter-no">24</span><span class="chapter-kicker">مرور روابط و اصطلاحات</span></div>
+<h1>پرسش‌های مرور مفاهیم</h1>
+<p class="lead">مرور فرض‌ها و روابط مدل‌های سرشکنی، برآورد استاتیک و برآورد دینامیکی.</p>
+<p>پرسش‌های این بخش بر تفسیر مدل و شرایط اعتبار روابط تمرکز دارند. پاسخ هر پرسش باید با مشخص‌کردن فرض‌های آماری، ساختار مجهولات و اطلاعات مورد استفاده بیان شود.</p>
+<details class="quiz"><summary>تفاوت حالت‌های اول و دوم</summary><div class="answer">در هر دو حالت، بردار پارامترها مشترک است. در حالت دوم، دسته‌ها مستقل فرض می‌شوند و کوواریانس کل بلوکی‌قطری است؛ بنابراین سهم اطلاعات هر دسته جداگانه محاسبه و جمع می‌شود.</div></details>
+<details class="quiz"><summary>تفاوت حالت‌های سوم و چهارم</summary><div class="answer">ساختار محلی و عمومی مجهولات ثابت می‌ماند. در حالت سوم، کوواریانس با یک عامل مقیاس مشترک \(\sigma_0^2\) نوشته می‌شود؛ در حالت چهارم، ضرایب بلوک‌ها متفاوت‌اند.</div></details>
+<details class="quiz"><summary>تفاوت حالت‌های چهارم و پنجم</summary><div class="answer">در حالت پنجم، کوواریانس متقابل دسته‌ها صفر است. این فرض ساختار نرمال را برای حذف پارامترهای محلی ساده می‌کند، ولی وابستگی برآوردها از طریق پارامتر عمومی باقی می‌ماند.</div></details>
+<details class="quiz"><summary>اطلاعات پیشین و قید قطعی</summary><div class="answer">اطلاعات پیشین دارای عدم‌قطعیت است و به‌صورت وزن‌دار وارد حل می‌شود. قید قطعی باید دقیقاً ارضا شود و در صورت‌بندی با ضریب لاگرانژ یا روش‌های معادل اعمال می‌شود.</div></details>
+<details class="quiz"><summary>کوواریانس برآورد و عامل مقیاس</summary><div class="answer">اگر وزن معکوس کوواریانس مطلق باشد، کوواریانس GLS برابر معکوس ماتریس نرمال است. اگر وزن معکوس هم‌فاکتور باشد، عامل \(\sigma_0^2\) باید در نتیجه لحاظ شود.</div></details>
+<details class="quiz"><summary>صفرشدن کوواریانس متقابل و استقلال</summary><div class="answer">استقلال، ناهمبستگی را نتیجه می‌دهد. ناهمبستگی در توزیع عمومی استقلال را اثبات نمی‌کند؛ برای متغیرهای گاوسی مشترک، این دو مفهوم معادل‌اند.</div></details>
+<details class="quiz"><summary>نقص رتبه در مدل محلی و عمومی</summary><div class="answer">اگر ستون پارامتر عمومی ترکیب خطی ستون‌های پارامترهای محلی باشد، اثر آن از مشاهدات جدا نمی‌شود. یک بایاس ثابت مشترک در کنار عرض از مبدأ مستقل برای همهٔ دسته‌ها نمونه‌ای از این وابستگی است.</div></details>
+<details class="quiz"><summary>شرایط برابری حل دسته‌ای و بازگشتی</summary><div class="answer">مدل تابعی، مشاهدات، کوواریانس و اطلاعات اولیه باید یکسان باشند و فرض ناهمبستگی دسته‌های جدید با اطلاعات قبلی رعایت شود. تفاوت وزن یا ورود دوبارهٔ داده، مقایسه را تغییر می‌دهد.</div></details>
+<details class="quiz"><summary>پارامتر ثابت در مدل حرکت</summary><div class="answer">در برازش یک بازه، موقعیت اولیه و سرعت ثابت می‌توانند پارامترهای ثابت مدل باشند، در حالی که مختصات مشاهده‌شده با زمان تغییر می‌کنند.</div></details>
+<details class="quiz"><summary>ماتریس دینامیکی و ماتریس انتقال</summary><div class="answer">ماتریس دینامیکی در معادلهٔ مشتق زمانی قرار دارد. ماتریس انتقال، وضعیت را بین دو زمان منتقل می‌کند و برای ضرایب ثابت با نمای ماتریسی \(e^{A_c\Delta t}\) به دست می‌آید.</div></details>
+<details class="quiz"><summary>تفاوت دو مدل نویز شتاب</summary><div class="answer">شتاب تصادفی ثابت در هر بازه و شتاب سفید پیوسته، فرض‌های آماری متفاوتی دارند. توان‌های فاصلهٔ زمانی و واحد پارامتر شدت نویز در آن‌ها متفاوت است.</div></details>
+<details class="quiz"><summary>اصلاح سرعت با مشاهدهٔ موقعیت</summary><div class="answer">کوواریانس متقابل موقعیت و سرعت، اطلاعات نوآوری موقعیت را به مؤلفهٔ سرعت منتقل می‌کند. این اثر در سطر متناظر سرعت در بهرهٔ کالمن ظاهر می‌شود.</div></details>
+<details class="quiz"><summary>قطع مشاهده</summary><div class="answer">انتقال وضعیت و کوواریانس ادامه می‌یابد، ولی اصلاح مشاهداتی انجام نمی‌شود. رفتار کوواریانس به مدل تحول و نویز فرایند بستگی دارد.</div></details>
+<details class="quiz"><summary>کاهش نوسان و دقت مطلق</summary><div class="answer">کاهش نوسان خروجی، به‌تنهایی کاهش خطای واقعی را اثبات نمی‌کند. تأخیر فیلتر، صحت مدل، مرجع مستقل و سازگاری آماری نیز باید بررسی شوند.</div></details>
+<details class="quiz"><summary>تفاوت NIS و NEES</summary><div class="answer">معیار NIS از نوآوری و کوواریانس آن استفاده می‌کند و به حقیقت وضعیت نیاز ندارد. معیار NEES از خطای برآورد نسبت به وضعیت حقیقی و کوواریانس همان خطا تشکیل می‌شود.</div></details>
+<details class="quiz"><summary>محدودهٔ اطلاعات در هموارسازی</summary><div class="answer">هموارساز برای وضعیت گذشته از مشاهدات زمان‌های بعد نیز استفاده می‌کند. این تفاوت باید هنگام مقایسه با فیلتر برخط اعلام شود.</div></details></article>
+<nav class="lesson-pagination" aria-label="درس قبلی و بعدی"><a class="previous-lesson" href="18-lesson.html"><span>درس قبلی</span><strong>→ ورودی سرعت و نرخ گردش در مدل حرکت</strong></a><a class="next-lesson" href="20-reference.html"><span>بخش بعدی</span><strong>جدول مدل‌ها، روابط و واژه‌نامه ←</strong></a></nav>
+</main></div><footer class="site-footer">
+  <div><strong>تحلیل سری زمانی · دانشگاه تهران</strong><p>استاد: دکتر سعید فرزانه <span class="footer-separator">|</span> دستیار آموزشی: علیرضا عطوفی</p></div>
+  <a href="mailto:atoofi.alireza@ut.ac.ir" dir="ltr">atoofi.alireza@ut.ac.ir</a>
+</footer></div>
+</body></html>
